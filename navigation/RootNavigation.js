@@ -24,16 +24,16 @@ export default class RootNavigation extends React.Component {
 
   render() {
     return (
-      <TabNavigation tabBarHeight={56} initialTab="home">
+      <TabNavigation tabBarHeight={46} initialTab="home" tabBarStyle={styles.tabNavigation}>
         <TabNavigationItem
           id="home"
-          renderIcon={isSelected => this._renderIcon('home', isSelected)}>
+          renderIcon={isSelected => this._renderIcon('users', isSelected)}>
           <StackNavigation initialRoute="home" />
         </TabNavigationItem>
 
         <TabNavigationItem
           id="links"
-          renderIcon={isSelected => this._renderIcon('book', isSelected)}>
+          renderIcon={isSelected => this._renderIcon('user-plus', isSelected)}>
           <StackNavigation initialRoute="links" />
         </TabNavigationItem>
 
@@ -50,7 +50,7 @@ export default class RootNavigation extends React.Component {
     return (
       <FontAwesome
         name={name}
-        size={32}
+        size={22}
         color={isSelected ? Colors.tabIconSelected : Colors.tabIconDefault}
       />
     );
@@ -85,4 +85,7 @@ const styles = StyleSheet.create({
   selectedTab: {
     color: Colors.tabIconSelected,
   },
+  tabNavigation: {
+    backgroundColor: Colors.tintColor,
+  }
 });
