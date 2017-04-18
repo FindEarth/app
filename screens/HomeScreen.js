@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
   },
   searchBarInput: {
-    color: Colors.tintColor,
     backgroundColor: '#fff',
   },
 });
