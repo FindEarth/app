@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
   },
   statusBarUnderlay: {
     height: 24,
+    tintColor: 'white',
     backgroundColor: 'rgba(0,0,0,0.2)',
   },
 })
@@ -59,8 +60,7 @@ class AppContainer extends React.Component {
           </NavigationProvider>
 
           {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
-          {Platform.OS === 'android' &&
-            <View style={styles.statusBarUnderlay} />}
+          
         </View>
       )
     } else {

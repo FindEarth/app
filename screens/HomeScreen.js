@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
   },
   searchBarInput: {
+    color: Colors.tintColor,
     backgroundColor: '#fff',
   },
 })
@@ -60,6 +61,7 @@ export default class HomeScreen extends React.Component {
         <SearchBar
           lightTheme
           placeholderTextColor={Colors.tintColor}
+          textColor={Colors.tintColor}
           containerStyle={styles.searchBarContainer}
           inputStyle={styles.searchBarInput}
           icon={{color: Colors.tintColor}}
