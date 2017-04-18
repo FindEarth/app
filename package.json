@@ -1,7 +1,7 @@
 {
-  "name": "my-new-project",
+  "name": "find-earth-app",
   "version": "0.0.0",
-  "description": "Hello Expo!",
+  "description": "Find Earth App",
   "author": null,
   "main": "main.js",
   "scripts": {
