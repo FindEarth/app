@@ -1,19 +1,26 @@
-import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import { ExpoConfigView } from '@expo/samples';
+import React from 'react'
+import { ScrollView, StyleSheet } from 'react-native'
+import { ExpoConfigView } from '@expo/samples'
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+})
 
 export default class SettingsScreen extends React.Component {
   static route = {
     navigationBar: {
       title: 'exp.json',
     },
-  };
+  }
 
   render() {
     return (
       <ScrollView
         style={styles.container}
-        contentContainerStyle={this.props.route.getContentContainerStyle()}>
+        contentContainerStyle={this.props.route.getContentContainerStyle()}
+      >
 
         {/* Go ahead and delete ExpoConfigView and replace it with your
            * content, we just wanted to give you a quick view of your config */
@@ -21,12 +28,6 @@ export default class SettingsScreen extends React.Component {
         <ExpoConfigView />
 
       </ScrollView>
-    );
+    )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

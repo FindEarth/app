@@ -5,7 +5,9 @@
   "author": null,
   "main": "main.js",
   "scripts": {
-    "test": "node node_modules/jest/bin/jest.js"
+    "test": "node node_modules/jest/bin/jest.js",
+    "eslint": "eslint api/**/*.js components/**/*.js **/*.js constants/**/*.js navigation/**/*.js screens/**/*.js utilities/**/*.js main.js",
+    "precommit": "npm run eslint"
   },
   "jest": {
     "preset": "jest-expo"
@@ -19,6 +21,14 @@
     "react-native-elements": "^0.11.1"
   },
   "devDependencies": {
+    "babel-eslint": "^7.2.2",
+    "eslint": "^3.19.0",
+    "eslint-config-react-app": "^0.6.2",
+    "eslint-plugin-flowtype": "^2.30.4",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "husky": "^0.13.3",
     "jest-expo": "~0.3.0"
   }
 }

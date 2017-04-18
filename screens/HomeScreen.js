@@ -1,73 +1,29 @@
-import React from 'react';
+import React from 'react'
 import {
   ScrollView,
   StyleSheet,
-  Text,
   View,
-} from 'react-native';
+} from 'react-native'
 
-import Colors from '../constants/Colors';
+import Colors from '../constants/Colors'
 
 import { SearchBar } from 'react-native-elements'
 import { List, ListItem } from 'react-native-elements'
 
-import { MonoText } from '../components/StyledText';
-
 const list = [
   {
     name: 'Camila Cinalli',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-    subtitle: 'Vicente Lopez'
+    avatar_url:
+      'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+    subtitle: 'Vicente Lopez',
   },
   {
     name: 'Araceli Fulles',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-    subtitle: 'San Martin'
-  }
+    avatar_url:
+      'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: 'San Martin',
+  },
 ]
-
-export default class HomeScreen extends React.Component {
-  static route = {
-    navigationBar: {
-      title: 'Personas',
-      backgroundColor: Colors.tintColor,
-      borderBottomWidth: 0,
-      tintColor: '#fff',
-    },
-  };
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <SearchBar
-          lightTheme
-          placeholderTextColor={Colors.tintColor}
-          containerStyle={styles.searchBarContainer}
-          inputStyle={styles.searchBarInput}
-          icon={{color: Colors.tintColor}}
-          clearButtonMode='always'
-          placeholder='Buscar' />
-
-        <ScrollView style={styles.container}>
-
-          <List containerStyle={styles.list}>
-            {
-              list.map((l, i) => (
-                <ListItem
-                  roundAvatar
-                  avatar={{uri:l.avatar_url}}
-                  key={i}
-                  subtitle={l.subtitle}
-                  title={l.name}
-                />
-              ))
-            }
-          </List>
-        </ScrollView>
-      </View>
-    );
-  }
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -86,4 +42,48 @@ const styles = StyleSheet.create({
   searchBarInput: {
     backgroundColor: '#fff',
   },
-});
+})
+
+export default class HomeScreen extends React.Component {
+  static route = {
+    navigationBar: {
+      title: 'Personas',
+      backgroundColor: Colors.tintColor,
+      borderBottomWidth: 0,
+      tintColor: '#fff',
+    },
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <SearchBar
+          lightTheme
+          placeholderTextColor={Colors.tintColor}
+          containerStyle={styles.searchBarContainer}
+          inputStyle={styles.searchBarInput}
+          icon={{color: Colors.tintColor}}
+          clearButtonMode='always'
+          placeholder='Buscar'
+        />
+
+        <ScrollView style={styles.container}>
+
+          <List containerStyle={styles.list}>
+            {
+              list.map((l, i) => (
+                <ListItem
+                  roundAvatar
+                  avatar={{uri:l.avatar_url}}
+                  key={i}
+                  subtitle={l.subtitle}
+                  title={l.name}
+                />
+              ))
+            }
+          </List>
+        </ScrollView>
+      </View>
+    )
+  }
+}
