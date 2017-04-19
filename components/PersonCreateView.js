@@ -1,12 +1,12 @@
 import React from 'react'
-import { ScrollView } from 'react-native'
+import { ScrollView, Text } from 'react-native'
 import PropTypes from 'prop-types'
 
 function PersonCreateView({styles}) {
   return (
-    <ScrollView
-      style={styles.container}
-    />
+    <ScrollView style={styles.container}>
+      <Text>Hola</Text>
+    </ScrollView>
   )
 }
 

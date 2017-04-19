@@ -1,10 +1,9 @@
 import Expo from 'expo'
 import React from 'react'
 import { Platform, StatusBar, StyleSheet, View } from 'react-native'
-import { NavigationProvider, StackNavigation } from '@expo/ex-navigation'
 import { FontAwesome } from '@expo/vector-icons'
 
-import Router from './navigation/Router'
+import { Root } from './navigation/Router2'
 import cacheAssetsAsync from './utilities/cacheAssetsAsync'
 
 const styles = StyleSheet.create({
@@ -52,15 +51,10 @@ class AppContainer extends React.Component {
     if (this.state.appIsReady) {
       return (
         <View style={styles.container}>
-          <NavigationProvider router={Router}>
-            <StackNavigation
-              id="root"
-              initialRoute={Router.getRoute('rootNavigation')}
-            />
-          </NavigationProvider>
+          <Root />
 
           {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
-          
+
         </View>
       )
     } else {

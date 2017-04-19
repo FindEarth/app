@@ -25,19 +25,7 @@ class PersonList extends React.Component {
   }
 
   handlePress = (person) => {
-    this.props.navigator.push('PersonDetail', {
-      name: person.name,
-      subtitle: person.subtitle,
-    })
-  }
-
-  static route = {
-    navigationBar: {
-      title: 'Personas',
-      backgroundColor: Colors.tintColor,
-      borderBottomWidth: 0,
-      tintColor: '#fff',
-    },
+    this.props.navigation.navigate('PersonDetail', { ...person })
   }
 
   render() {
