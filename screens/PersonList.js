@@ -21,6 +21,10 @@ class PersonList extends React.Component {
     }
   }
 
+  handlePress = () => {
+    this.props.navigator.push('PersonDetail')
+  }
+
   static route = {
     navigationBar: {
       title: 'Personas',
@@ -36,6 +40,7 @@ class PersonList extends React.Component {
         colors={Colors}
         styles={Styles}
         list={this.state.list}
+        handlePress={this.handlePress}
       />
     )
   }

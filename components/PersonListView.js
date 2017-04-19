@@ -3,7 +3,7 @@ import { ScrollView, View } from 'react-native'
 import { List, ListItem, SearchBar } from 'react-native-elements'
 import PropTypes from 'prop-types'
 
-function PersonListView({colors, styles, list}) {
+function PersonListView({colors, styles, list, handlePress}) {
   return (
     <View style={styles.container}>
       <SearchBar
@@ -26,6 +26,7 @@ function PersonListView({colors, styles, list}) {
                 key={i}
                 subtitle={l.subtitle}
                 title={l.name}
+                onPress={handlePress}
               />
             ))
           }
@@ -39,6 +40,7 @@ PersonListView.propTypes = {
   colors: PropTypes.object.isRequired,
   styles: PropTypes.object.isRequired,
   list: PropTypes.array.isRequired,
+  handlePress: PropTypes.func.isRequired,
 }
 
 export default PersonListView

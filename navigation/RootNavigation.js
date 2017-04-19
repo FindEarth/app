@@ -38,28 +38,28 @@ export default class RootNavigation extends React.Component {
   render() {
     return (
       <TabNavigation tabBarHeight={46}
-          initialTab="home"
+          initialTab='PersonList'
           tabBarStyle={styles.tabNavigation}
       >
         <TabNavigationItem
-          id="home"
+          id='PersonList'
           renderIcon={isSelected => this._renderIcon('users', isSelected)}
         >
-          <StackNavigation initialRoute="home" />
+          <StackNavigation initialRoute='PersonList' />
         </TabNavigationItem>
 
         <TabNavigationItem
-          id="links"
+          id='PersonCreate'
           renderIcon={isSelected => this._renderIcon('user-plus', isSelected)}
         >
-          <StackNavigation initialRoute="links" />
+          <StackNavigation initialRoute='PersonCreate' />
         </TabNavigationItem>
 
         <TabNavigationItem
-          id="settings"
+          id='Config'
           renderIcon={isSelected => this._renderIcon('cog', isSelected)}
         >
-          <StackNavigation initialRoute="settings" />
+          <StackNavigation initialRoute='Config' />
         </TabNavigationItem>
       </TabNavigation>
     )
