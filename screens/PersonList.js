@@ -21,8 +21,11 @@ class PersonList extends React.Component {
     }
   }
 
-  handlePress = () => {
-    this.props.navigator.push('PersonDetail')
+  handlePress = (person) => {
+    this.props.navigator.push('PersonDetail', {
+      name: person.name,
+      subtitle: person.subtitle,
+    })
   }
 
   static route = {

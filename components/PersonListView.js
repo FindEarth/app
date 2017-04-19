@@ -26,7 +26,7 @@ function PersonListView({colors, styles, list, handlePress}) {
                 key={i}
                 subtitle={l.subtitle}
                 title={l.name}
-                onPress={handlePress}
+                onPress={() => handlePress(l)}
               />
             ))
           }
