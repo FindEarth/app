@@ -1,13 +1,13 @@
 import { createRouter } from '@expo/ex-navigation'
 
-import HomeScreen from '../screens/HomeScreen'
-import LinksScreen from '../screens/LinksScreen'
-import SettingsScreen from '../screens/SettingsScreen'
+import PersonList from '../screens/PersonList'
+import PersonCreate from '../screens/PersonCreate'
+import Config from '../screens/Config'
 import RootNavigation from './RootNavigation'
 
 export default createRouter(() => ({
-  home: () => HomeScreen,
-  links: () => LinksScreen,
-  settings: () => SettingsScreen,
+  home: () => PersonList,
+  links: () => PersonCreate,
+  settings: () => Config,
   rootNavigation: () => RootNavigation,
 }))

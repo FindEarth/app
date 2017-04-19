@@ -11,7 +11,7 @@ import { FontAwesome } from '@expo/vector-icons'
 import Alerts from '../constants/Alerts'
 import Colors from '../constants/Colors'
 import registerForPushNotificationsAsync
-  from '../api/registerForPushNotificationsAsync'
+  from '../pushNotifications/registerForPushNotificationsAsync'
 
 const styles = StyleSheet.create({
   container: {
@@ -79,7 +79,8 @@ export default class RootNavigation extends React.Component {
     // Send our push token over to our backend so we can receive notifications
     // You can comment the following line out if you want to stop receiving
     // a notification every time you open the app. Check out the source
-    // for this function in api/registerForPushNotificationsAsync.js
+    // for this function in
+    // pushNotifications/registerForPushNotificationsAsync.js
     registerForPushNotificationsAsync()
 
     // Watch for incoming notifications
