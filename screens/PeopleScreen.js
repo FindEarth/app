@@ -7,23 +7,8 @@ import {
 
 import Colors from '../constants/Colors'
 
-import { SearchBar } from 'react-native-elements'
-import { List, ListItem } from 'react-native-elements'
-
-const list = [
-  {
-    name: 'Camila Cinalli',
-    avatar_url:
-      'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-    subtitle: 'Vicente Lopez',
-  },
-  {
-    name: 'Araceli Fulles',
-    avatar_url:
-      'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-    subtitle: 'San Martin',
-  },
-]
+import { SearchBar, List, ListItem } from 'react-native-elements'
+import PeopleService from './../services/PeopleService'
 
 const styles = StyleSheet.create({
   container: {
@@ -45,14 +30,37 @@ const styles = StyleSheet.create({
   },
 })
 
-export default class HomeScreen extends React.Component {
+
+export default class PeopleScreen extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.PeopleService = new PeopleService()
+    this.state = {
+      waitingFirstCall: true,
+      refreshing: false,
+      people: [],
+    }
+  }
+
   static route = {
     navigationBar: {
-      title: 'Personas',
+      title: 'People',
       backgroundColor: Colors.tintColor,
       borderBottomWidth: 0,
       tintColor: '#fff',
     },
+  }
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  fetchData() {
+    this.PeopleService.fetchPeople()
+      .then((people) => {
+        this.setState({people: people})
+      })
   }
 
   render() {
@@ -70,10 +78,9 @@ export default class HomeScreen extends React.Component {
         />
 
         <ScrollView style={styles.container}>
-
           <List containerStyle={styles.list}>
             {
-              list.map((l, i) => (
+              this.state.people.map((l, i) => (
                 <ListItem
                   roundAvatar
                   avatar={{uri:l.avatar_url}}
