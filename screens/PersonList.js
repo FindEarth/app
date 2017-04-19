@@ -2,23 +2,26 @@ import React from 'react'
 import Colors from '../constants/Colors'
 import Styles from '../styles/PersonList'
 import PersonListView from '../components/PersonListView'
+import PersonListService from './../services/PersonList'
 
 class PersonList extends React.Component {
   constructor() {
     super()
+    this.PersonListService = new PersonListService()
     this.state = {
-      list: [{
-          name: 'Camila Cinalli',
-          avatar_url:
-            'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-          subtitle: 'Vicente Lopez',
-        }, {
-          name: 'Araceli Fulles',
-          avatar_url:
-            'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-          subtitle: 'San Martin',
-      }],
+      list: [],
     }
+  }
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  fetchData() {
+    this.PersonListService.fetchPeople()
+      .then((people) => {
+        this.setState({list: people})
+      })
   }
 
   handlePress = (person) => {

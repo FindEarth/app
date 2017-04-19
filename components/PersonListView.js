@@ -22,7 +22,7 @@ function PersonListView({colors, styles, list, handlePress}) {
             list.map((l, i) => (
               <ListItem
                 roundAvatar
-                avatar={{uri:l.avatar_url}}
+                avatar={{uri:undefined}}
                 key={i}
                 subtitle={l.subtitle}
                 title={l.name}
