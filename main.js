@@ -3,7 +3,7 @@ import React from 'react'
 import { Platform, StatusBar, StyleSheet, View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 
-import { Root } from './navigation/Router2'
+import { Root } from './navigation/Router'
 import cacheAssetsAsync from './utilities/cacheAssetsAsync'
 
 const styles = StyleSheet.create({
