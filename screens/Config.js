@@ -4,12 +4,16 @@ import Styles from '../styles/Config'
 import ConfigView from '../components/ConfigView'
 
 class Config extends React.Component {
-  static route = {
-    navigationBar: {
-      title: 'Opciones',
-      backgroundColor: Colors.tintColor,
-      borderBottomWidth: 0,
-      tintColor: '#fff',
+  static navigationOptions = {
+    title: 'GROUPON',
+    header: {
+      titleStyle: {
+        color: 'white',
+      },
+      style: {
+        backgroundColor: Colors.tintColor,
+        elevation: 0,
+      },
     },
   }
 
