@@ -4,36 +4,38 @@ import {
   View,
   ActivityIndicator,
 }  from 'react-native'
-import styles from '../styles/LoadingIndicator'
-// import PropTypes from 'prop-types'
+import Styles from '../styles/LoadingIndicator'
+import PropTypes from 'prop-types'
 
-const activityIndicatorSize = 40
-const activityIndicatorPaddingTop = 200
-
-function ios() {
+function ios(options) {
   return (
-    <View style={styles.indicatorContainer}>
-      <ActivityIndicator size={'large'} />
+    <View style={options.style}>
+      <ActivityIndicator size={options.size} />
     </View>
   )
 }
 
-function android() {
+function android(options) {
   return (
     <View backgroundColor={'#FFFFFF'}>
       <ActivityIndicator
-        style={{paddingTop: activityIndicatorPaddingTop}}
-        size={activityIndicatorSize}
+        style={options.style}
+        size={options.size}
       />
     </View>
   )
 }
 
-function LoadingIndicator() {
-  return Platform.OS === 'ios' ? ios() : android()
+function LoadingIndicator(
+  androidOptions = { size: 40, style: Styles.android },
+  iosOptions = { size: 'large', style: Styles.ios }
+) {
+  return Platform.OS === 'ios' ? ios(iosOptions) : android(androidOptions)
 }
 
-// LoadingIndicator.propTypes = {
-// }
+LoadingIndicator.propTypes = {
+  android: PropTypes.object,
+  ios: PropTypes.object,
+}
 
 export default LoadingIndicator
