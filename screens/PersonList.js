@@ -1,34 +1,16 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Colors from '../constants/Colors'
 import Styles from '../styles/PersonList'
 import PersonListView from '../components/PersonListView'
-import PersonListService from './../services/PersonList'
+
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as actions from '../actions'
 
 class PersonList extends React.Component {
-  constructor() {
-    super()
-    this.PersonListService = new PersonListService()
-    this.state = {
-      list: [],
-    }
-  }
 
-  componentDidMount() {
-    this.fetchData()
-  }
-
-  fetchData() {
-    this.PersonListService.fetchPeople()
-      .then((people) => {
-        this.setState({list: people})
-      })
-  }
-
-  handlePress = (person) => {
-    this.props.navigator.push('PersonDetail', {
-      name: person.name,
-      subtitle: person.subtitle,
-    })
+  static propTypes = {
   }
 
   static route = {
@@ -40,16 +22,46 @@ class PersonList extends React.Component {
     },
   }
 
+  componentDidMount() {
+    this.props.fetchPersonList()
+  }
+
+  handlePress = (person) => {
+    this.props.navigator.push('PersonDetail', {
+      name: person.name,
+      subtitle: person.subtitle,
+    })
+  }
+
   render() {
     return (
       <PersonListView
         colors={Colors}
         styles={Styles}
-        list={this.state.list}
+        list={this.props.personList}
         handlePress={this.handlePress}
       />
     )
   }
 }
 
-export default PersonList
+
+
+function mapStateToProps (state) {
+  return {
+    fetching: state.personList.fetching,
+    successFetching: state.personList.successFetching,
+    errorFetching: state.personList.errorFetching,
+    personList: state.personList.list,
+    error: state.personList.error,
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators(actions, dispatch)
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PersonList)

@@ -1,3 +1,4 @@
 export default {
-  'URL': 'https://api.find.earth',
+  baseUrl: 'https://api.find.earth',
+  personEndpoint: '/person',
 }
