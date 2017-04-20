@@ -1,25 +1,18 @@
 import Expo from 'expo'
 import React from 'react'
-import { Platform, StatusBar, StyleSheet, View } from 'react-native'
+import { Platform, StatusBar, View } from 'react-native'
 import { NavigationProvider, StackNavigation } from '@expo/ex-navigation'
 import { FontAwesome } from '@expo/vector-icons'
 
 import Router from './navigation/Router'
 import cacheAssetsAsync from './utilities/cacheAssetsAsync'
+import styles from './styles/AppContainer'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  statusBarUnderlay: {
-    height: 24,
-    tintColor: 'white',
-    backgroundColor: 'rgba(0,0,0,0.2)',
-  },
-})
+import { Provider } from 'react-redux'
+import store from './store'
 
 class AppContainer extends React.Component {
+
   state = {
     appIsReady: false,
   }
@@ -51,17 +44,17 @@ class AppContainer extends React.Component {
   render() {
     if (this.state.appIsReady) {
       return (
-        <View style={styles.container}>
-          <NavigationProvider router={Router}>
-            <StackNavigation
-              id="root"
-              initialRoute={Router.getRoute('rootNavigation')}
-            />
-          </NavigationProvider>
-
-          {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
-          
-        </View>
+        <Provider store={store}>
+          <View style={styles.container}>
+            <NavigationProvider router={Router}>
+              <StackNavigation
+                id="root"
+                initialRoute={Router.getRoute('rootNavigation')}
+              />
+            </NavigationProvider>
+            {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
+          </View>
+        </Provider>
       )
     } else {
       return <Expo.AppLoading />
