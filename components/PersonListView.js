@@ -1,46 +1,60 @@
 import React from 'react'
 import { ScrollView, View } from 'react-native'
-import { List, ListItem, SearchBar } from 'react-native-elements'
+import { List, ListItem} from 'react-native-elements'
 import PropTypes from 'prop-types'
+import colors from '../constants/Colors'
+import userM from '../assets/images/userM.png'
+import userF from '../assets/images/userF.png'
+import Search from 'react-native-search-box'
+import Spinner from 'react-native-loading-spinner-overlay'
 
-function PersonListView({colors, styles, list, handlePress}) {
+let userImg = (gender) => gender === 'M' ? userM : userF
+
+function PersonListView({styles, list, handlePress, fetching}) {
   return (
     <View style={styles.container}>
-      <SearchBar
-        lightTheme
-        placeholderTextColor={colors.tintColor}
-        textColor={colors.tintColor}
-        containerStyle={styles.searchBarContainer}
-        inputStyle={styles.searchBarInput}
-        icon={{color: colors.tintColor}}
-        clearButtonMode='always'
-        placeholder='Buscar'
+      <Search
+        backgroundColor={colors.tintColor}
+        tintColorDelete={colors.gray}
+        placeholder={'Buscar'}
       />
       <ScrollView style={styles.container}>
         <List containerStyle={styles.list}>
           {
-            list.map((l, i) => (
-              <ListItem
-                roundAvatar
-                avatar={{uri:l.photos.length > 0? l.photos[0].url : undefined}}
-                key={i}
-                subtitle={l.subtitle}
-                title={l.name}
-                onPress={() => handlePress(l)}
-              />
-            ))
+            list.map((l, i) => {
+              const uri = l.photos.length > 0 ? l.photos[0].url : userImg(l.gender)
+              return (
+                <ListItem
+                  roundAvatar
+                  avatar={uri}
+                  key={i}
+                  subtitle={l.geo.address}
+                  title={l.name}
+                  onPress={() => handlePress(l)}
+                />
+              )
+            })
           }
         </List>
+        { fetching &&
+          <Spinner
+            visible={true}
+            textContent={'Buscando...'}
+            textStyle={styles.spinner}
+            color={colors.tintColor}
+            overlayColor={'rgba(0, 0, 0, 0)'}
+          />
+        }
       </ScrollView>
     </View>
   )
 }
 
 PersonListView.propTypes = {
-  colors: PropTypes.object.isRequired,
   styles: PropTypes.object.isRequired,
   list: PropTypes.array.isRequired,
   handlePress: PropTypes.func.isRequired,
+  fetching: PropTypes.bool.isRequired,
 }
 
 export default PersonListView

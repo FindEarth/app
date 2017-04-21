@@ -9,7 +9,7 @@ class PersonCreate extends React.Component {
       title: 'Nuevo',
       backgroundColor: Colors.tintColor,
       borderBottomWidth: 0,
-      tintColor: '#fff',
+      tintColor: Colors.white,
     },
   }
 
