@@ -29,10 +29,14 @@ class PersonList extends React.Component {
   }
 
   componentDidMount() {
+    this.fetchPersonList()
+  }
+
+  fetchPersonList = () => {
     this.props.fetchPersonList()
   }
 
-  handlePress = (person) => {
+  handleListPress = (person) => {
     this.props.navigator.push('PersonDetail', {
       name: person.name,
       subtitle: person.subtitle,
@@ -45,8 +49,12 @@ class PersonList extends React.Component {
         colors={Colors}
         styles={Styles}
         list={this.props.personList}
-        handlePress={this.handlePress}
+        handleListPress={this.handleListPress}
+        handleErrorPress={this.fetchPersonList}
         fetching={this.props.fetching}
+        successFetching={this.props.successFetching}
+        errorFetching={this.props.errorFetching}
+        error={this.props.error}
       />
     )
   }
