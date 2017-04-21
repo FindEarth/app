@@ -4,16 +4,13 @@ import Colors from '../constants/Colors'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eef0f3',
+    backgroundColor: Colors.white,
   },
-  list: {
-    marginBottom: 20,
-    marginTop: -1,
+  selectedTab: {
+    color: Colors.tabIconSelected,
   },
-  spinner: {
-    color: Colors.tintColor,
-    fontSize: 16, marginTop: -45,
-    fontWeight: 'normal',
+  tabNavigation: {
+    backgroundColor: Colors.tintColor,
   },
 })
 

@@ -9,7 +9,7 @@ class PersonDetail extends React.Component {
       title: 'Descripción',
       backgroundColor: Colors.tintColor,
       borderBottomWidth: 0,
-      tintColor: '#fff',
+      tintColor: Colors.white,
     },
   }
 

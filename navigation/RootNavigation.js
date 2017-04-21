@@ -1,5 +1,4 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
 import { Notifications } from 'expo'
 import {
   StackNavigation,
@@ -7,24 +6,12 @@ import {
   TabNavigationItem,
 } from '@expo/ex-navigation'
 import { FontAwesome } from '@expo/vector-icons'
+import styles from '../styles/RootNavigation'
 
 import Alerts from '../constants/Alerts'
 import Colors from '../constants/Colors'
 import registerForPushNotificationsAsync
   from '../pushNotifications/registerForPushNotificationsAsync'
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  selectedTab: {
-    color: Colors.tabIconSelected,
-  },
-  tabNavigation: {
-    backgroundColor: Colors.tintColor,
-  },
-})
 
 export default class RootNavigation extends React.Component {
   componentDidMount() {
@@ -38,8 +25,8 @@ export default class RootNavigation extends React.Component {
   render() {
     return (
       <TabNavigation tabBarHeight={46}
-          initialTab='PersonList'
-          tabBarStyle={styles.tabNavigation}
+        initialTab='PersonList'
+        tabBarStyle={styles.tabNavigation}
       >
         <TabNavigationItem
           id='PersonList'
@@ -69,7 +56,7 @@ export default class RootNavigation extends React.Component {
     return (
       <FontAwesome
         name={name}
-        size={22}
+        size={19}
         color={isSelected ? Colors.tabIconSelected : Colors.tabIconDefault}
       />
     )

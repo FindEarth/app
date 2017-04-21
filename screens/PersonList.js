@@ -6,11 +6,17 @@ import PersonListView from '../components/PersonListView'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as actions from '../actions'
+import * as allActions from '../actions'
 
 class PersonList extends React.Component {
 
   static propTypes = {
+    fetchPersonList: PropTypes.func.isRequired,
+    fetching: PropTypes.bool.isRequired,
+    personList: PropTypes.array.isRequired,
+    error: PropTypes.string.isRequired,
+    successFetching: PropTypes.bool.isRequired,
+    errorFetching: PropTypes.bool.isRequired,
   }
 
   static route = {
@@ -18,7 +24,7 @@ class PersonList extends React.Component {
       title: 'Personas',
       backgroundColor: Colors.tintColor,
       borderBottomWidth: 0,
-      tintColor: '#fff',
+      tintColor: Colors.white,
     },
   }
 
@@ -40,12 +46,11 @@ class PersonList extends React.Component {
         styles={Styles}
         list={this.props.personList}
         handlePress={this.handlePress}
+        fetching={this.props.fetching}
       />
     )
   }
 }
-
-
 
 function mapStateToProps (state) {
   return {
@@ -58,7 +63,10 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators(actions, dispatch)
+  const actions = bindActionCreators(allActions, dispatch)
+  return {
+    fetchPersonList: actions.fetchPersonList,
+  }
 }
 
 export default connect(

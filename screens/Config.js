@@ -9,7 +9,7 @@ class Config extends React.Component {
       title: 'Opciones',
       backgroundColor: Colors.tintColor,
       borderBottomWidth: 0,
-      tintColor: '#fff',
+      tintColor: Colors.white,
     },
   }
 

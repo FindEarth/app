@@ -6,6 +6,7 @@ import {
 }  from 'react-native'
 import Styles from '../styles/LoadingIndicator'
 import PropTypes from 'prop-types'
+import colors from '../constants/Colors'
 
 function ios(options) {
   return (
@@ -17,7 +18,7 @@ function ios(options) {
 
 function android(options) {
   return (
-    <View backgroundColor={'#FFFFFF'}>
+    <View backgroundColor={colors.white}>
       <ActivityIndicator
         style={options.style}
         size={options.size}
