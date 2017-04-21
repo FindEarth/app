@@ -19,6 +19,7 @@ export default function personList(state = initialState, action) {
       return {
         ...state,
         successFetching: false,
+        errorFetching: false,
         fetching: true,
       }
 
