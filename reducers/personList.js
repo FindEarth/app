@@ -2,6 +2,7 @@ import {
   FETCHING_PERSON_LIST,
   SUCCESS_FETCHING,
   ERROR_FETCHING,
+  SET_LOCATION,
 } from '../constants/ActionTypes'
 
 const initialState = {
@@ -10,6 +11,8 @@ const initialState = {
   errorFetching: false,
   list:[],
   error: '',
+  locationDenied: true,
+  location: {},
 }
 
 export default function personList(state = initialState, action) {
@@ -37,6 +40,13 @@ export default function personList(state = initialState, action) {
         fetching: false,
         errorFetching: true,
         error: action.payload,
+      }
+
+    case SET_LOCATION:
+      return {
+        ...state,
+        locationDenied: false,
+        location: action.payload,
       }
 
     default:

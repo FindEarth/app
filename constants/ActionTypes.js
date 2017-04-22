@@ -1,6 +1,9 @@
 // PersonList
 export const FETCHING_PERSON_LIST = 'START_FETCHING_PERSON_LIST'
 
+// Location
+export const SET_LOCATION = 'SET_LOCATION'
+
 // Api calls
 export const ERROR_FETCHING = 'ERROR_FETCHING_PERSON_LIST'
 export const SUCCESS_FETCHING = 'SUCCESS_FETCHING_PERSON_LIST'

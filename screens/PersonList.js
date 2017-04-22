@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Colors from '../constants/Colors'
 import Styles from '../styles/PersonList'
 import PersonListView from '../components/PersonListView'
+import { Location, Permissions } from 'expo'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -12,11 +13,14 @@ class PersonList extends React.Component {
 
   static propTypes = {
     fetchPersonList: PropTypes.func.isRequired,
+    setLocation: PropTypes.func.isRequired,
     fetching: PropTypes.bool.isRequired,
     personList: PropTypes.array.isRequired,
     error: PropTypes.string.isRequired,
     successFetching: PropTypes.bool.isRequired,
     errorFetching: PropTypes.bool.isRequired,
+    locationDenied: PropTypes.bool.isRequired,
+    location: PropTypes.object.isRequired,
   }
 
   static route = {
@@ -28,12 +32,39 @@ class PersonList extends React.Component {
     },
   }
 
-  componentDidMount() {
-    this.fetchPersonList()
+  componentWillMount() {
+
   }
 
-  fetchPersonList = () => {
-    this.props.fetchPersonList()
+  componentDidMount() {
+    this.getLocationAsync()
+  }
+
+  getLocationAsync = async () => {
+    try {
+      let { status } = await Permissions.askAsync(Permissions.LOCATION)
+      if (status === 'granted') {
+        const location = await Location.getCurrentPositionAsync({
+          enableHighAccuracy: true,
+        })
+        this.props.setLocation(location)
+      }
+    } catch (e) {
+      console.error(e)
+    } finally {
+      if (this.props.locationDenied) {
+        this.fetchPersonList()
+      } else {
+        this.fetchPersonList({
+          long: this.props.location.coords.longitude,
+          lat: this.props.location.coords.latitude,
+        })
+      }
+    }
+  }
+
+  fetchPersonList = (location) => {
+    this.props.fetchPersonList(location)
   }
 
   handleListPress = (person) => {
@@ -67,6 +98,8 @@ function mapStateToProps (state) {
     errorFetching: state.personList.errorFetching,
     personList: state.personList.list,
     error: state.personList.error,
+    locationDenied: state.personList.locationDenied,
+    location: state.personList.location,
   }
 }
 
@@ -74,6 +107,7 @@ function mapDispatchToProps (dispatch) {
   const actions = bindActionCreators(allActions, dispatch)
   return {
     fetchPersonList: actions.fetchPersonList,
+    setLocation: actions.setLocation,
   }
 }
 
