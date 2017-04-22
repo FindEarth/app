@@ -3838,6 +3838,10 @@ react-native-elements@^0.11.1:
   dependencies:
     eventemitter3 "^2.0.2"
 
+react-native-loading-spinner-overlay@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/react-native-loading-spinner-overlay/-/react-native-loading-spinner-overlay-0.4.4.tgz#a19daea11787b1b539a2fa15945ab6f8bb97cd8c"
+
 "react-native-maps@https://github.com/exponent/react-native-maps/archive/v0.12.2-exp.1.tar.gz":
   version "0.12.2"
   resolved "https://github.com/exponent/react-native-maps/archive/v0.12.2-exp.1.tar.gz#1984bfe5a8a341dd3b44ad565cfcd1b25a5c2b03"
@@ -3847,6 +3851,10 @@ react-native-safe-module@^1.1.0:
   resolved "https://registry.yarnpkg.com/react-native-safe-module/-/react-native-safe-module-1.1.1.tgz#c3eb1d2030661676b075ba8d12c305a31b1d8fb4"
   dependencies:
     dedent "^0.6.0"
+
+react-native-search-box@0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-search-box/-/react-native-search-box-0.0.7.tgz#5970252c127cdc8bf06e53be53a4c1967487011a"
 
 react-native-side-menu@^0.20.1:
   version "0.20.1"
