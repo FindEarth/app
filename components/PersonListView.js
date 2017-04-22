@@ -8,11 +8,6 @@ import userF from '../assets/images/userF.png'
 import Search from 'react-native-search-box'
 import Spinner from 'react-native-loading-spinner-overlay'
 
-function userImg(user) {
-  const noImgReplace = user.gender === 'M' ? userM : userF
-  return user.photos.length > 0 ? user.photos[0].url : noImgReplace
-}
-
 const iconReloadOptions = {
   name: 'repeat',
   type: 'font-awesome',
@@ -23,6 +18,16 @@ const iconReloadOptions = {
     left: 5,
   },
 }
+
+function userImg(user) {
+  const noImgReplace = user.gender === 'M' ? userM : userF
+  return user.photos.length > 0 ? user.photos[0].url : noImgReplace
+}
+
+const userSubtitle = (user) => (user.distance ?
+  `◉ ${(user.distance.toFixed(1))} ㎞ - 🌎${user.geo.address}` :
+  `🌎${user.geo.address}`
+)
 
 function PersonListView({
   styles,
@@ -53,7 +58,7 @@ function PersonListView({
                   roundAvatar
                   avatar={userImg(l)}
                   key={i}
-                  subtitle={l.geo.address}
+                  subtitle={userSubtitle(l)}
                   title={l.name}
                   onPress={() => handleListPress(l)}
                 />
