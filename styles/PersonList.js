@@ -31,6 +31,17 @@ const styles = StyleSheet.create({
     height: 40,
     width: 200,
   },
+  userDistance: {
+    marginLeft: 10,
+    marginTop: 5,
+    color: '#86939e',
+  },
+  userAddress: {
+    marginLeft: 10,
+    marginTop: 5,
+    lineHeight: 20,
+    color: '#86939e',
+  },
 })
 
 export default styles

@@ -1,6 +1,6 @@
 import React from 'react'
-import { ScrollView, View, Text } from 'react-native'
-import { List, ListItem, Button } from 'react-native-elements'
+import { ScrollView, View } from 'react-native'
+import { List, ListItem, Button, Text } from 'react-native-elements'
 import PropTypes from 'prop-types'
 import colors from '../constants/Colors'
 import userM from '../assets/images/userM.png'
@@ -23,11 +23,6 @@ function userImg(user) {
   const noImgReplace = user.gender === 'M' ? userM : userF
   return user.photos.length > 0 ? user.photos[0].url : noImgReplace
 }
-
-const userSubtitle = (user) => (user.distance ?
-  `◉ ${(user.distance.toFixed(1))} ㎞ - 🌎${user.geo.address}` :
-  `🌎${user.geo.address}`
-)
 
 function PersonListView({
   styles,
@@ -53,14 +48,25 @@ function PersonListView({
         { successFetching &&
           <List containerStyle={styles.list}>
             {
-              list.map((l, i) => (
+              list.map((user, i) => (
                 <ListItem
                   roundAvatar
-                  avatar={userImg(l)}
+                  avatar={userImg(user)}
                   key={i}
-                  subtitle={userSubtitle(l)}
-                  title={l.name}
-                  onPress={() => handleListPress(l)}
+                  title={user.name}
+                  subtitle={
+                    <View>
+                      {user.distance &&
+                        <Text style={styles.userDistance}>
+                          {`◉ ${(user.distance.toFixed(1))} ㎞ `}
+                        </Text>
+                      }
+                      <Text style={styles.userAddress}>
+                        {`🌎${user.geo.address}`}
+                      </Text>
+                    </View>
+                  }
+                  onPress={() => handleListPress(user)}
                 />
               ))
             }
