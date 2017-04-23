@@ -32,10 +32,6 @@ class PersonList extends React.Component {
     },
   }
 
-  componentWillMount() {
-
-  }
-
   componentDidMount() {
     this.getLocationAsync()
   }

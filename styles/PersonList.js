@@ -36,11 +36,18 @@ const styles = StyleSheet.create({
     marginTop: 5,
     color: '#86939e',
   },
-  userAddress: {
+  addressContainer: {
+    flexDirection: 'row',
+    flex: 1,
     marginLeft: 10,
     marginTop: 5,
+  },
+  userAddress: {
     lineHeight: 20,
     color: '#86939e',
+  },
+  userAddressIcon: {
+    fontSize: 10,
   },
 })
 

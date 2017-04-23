@@ -39,10 +39,11 @@ function PersonListView({
   return (
     <View style={styles.container}>
       <Search
-        backgroundColor={colors.tintColor}
+        backgroundColor={colors.gray}
         tintColorDelete={colors.gray}
         placeholder={'Buscar'}
         cancelTitle={'Cerrar'}
+        style={{marginBottom: 10}}
       />
       <ScrollView style={styles.container}>
         { successFetching &&
@@ -56,14 +57,17 @@ function PersonListView({
                   title={user.name}
                   subtitle={
                     <View>
-                      {user.distance &&
+                      { user.distance &&
                         <Text style={styles.userDistance}>
                           {`◉ ${(user.distance.toFixed(1))} ㎞ `}
                         </Text>
                       }
-                      <Text style={styles.userAddress}>
-                        {`🌎${user.geo.address}`}
-                      </Text>
+                      <View style={styles.addressContainer}>
+                        <Text style={styles.userAddressIcon}>🌎 </Text>
+                        <Text style={styles.userAddress}>
+                          {user.geo.address}
+                        </Text>
+                      </View>
                     </View>
                   }
                   onPress={() => handleListPress(user)}
