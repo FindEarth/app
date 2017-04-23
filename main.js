@@ -42,23 +42,22 @@ class AppContainer extends React.Component {
   }
 
   render() {
-    if (this.state.appIsReady) {
-      return (
-        <Provider store={store}>
-          <View style={styles.container}>
-            <NavigationProvider router={Router}>
-              <StackNavigation
-                id="root"
-                initialRoute={Router.getRoute('rootNavigation')}
-              />
-            </NavigationProvider>
-            {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
-          </View>
-        </Provider>
-      )
-    } else {
+    if (!this.state.appIsReady) {
       return <Expo.AppLoading />
     }
+    return (
+      <Provider store={store}>
+        <View style={styles.container}>
+          <NavigationProvider router={Router}>
+            <StackNavigation
+              id="root"
+              initialRoute={Router.getRoute('rootNavigation')}
+            />
+          </NavigationProvider>
+          {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
+        </View>
+      </Provider>
+    )
   }
 }
 

@@ -68,10 +68,7 @@ class PersonList extends React.Component {
   }
 
   handleListPress = (person) => {
-    this.props.navigator.push('PersonDetail', {
-      name: person.name,
-      subtitle: person.subtitle,
-    })
+    this.props.navigator.push('PersonDetail', { person })
   }
 
   render() {
