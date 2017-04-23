@@ -1,6 +1,7 @@
 import React from 'react'
 import Colors from '../constants/Colors'
 import Styles from '../styles/Config'
+import HeaderTitle from '../components/HeaderTitle'
 import ConfigView from '../components/ConfigView'
 
 class Config extends React.Component {
@@ -10,6 +11,9 @@ class Config extends React.Component {
       backgroundColor: Colors.tintColor,
       borderBottomWidth: 0,
       tintColor: Colors.white,
+      renderTitle: () => (
+        <HeaderTitle title={'Config'} />
+      ),
     },
   }
 

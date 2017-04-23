@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Colors from '../constants/Colors'
 import Styles from '../styles/PersonList'
+import HeaderTitle from '../components/HeaderTitle'
 import PersonListView from '../components/PersonListView'
 import { Location, Permissions } from 'expo'
 
@@ -29,6 +30,9 @@ class PersonList extends React.Component {
       backgroundColor: Colors.tintColor,
       borderBottomWidth: 0,
       tintColor: Colors.white,
+      renderTitle: () => (
+        <HeaderTitle title={'Peronas'} />
+      ),
     },
   }
 
