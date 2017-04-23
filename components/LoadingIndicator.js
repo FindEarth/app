@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-  Platform,
-  View,
-  ActivityIndicator,
-}  from 'react-native'
+import { Platform, View, ActivityIndicator } from 'react-native'
 import Styles from '../styles/LoadingIndicator'
 import PropTypes from 'prop-types'
 import colors from '../constants/Colors'

@@ -52,14 +52,10 @@ class PersonList extends React.Component {
     } catch (e) {
       console.error(e)
     } finally {
-      if (this.props.locationDenied) {
-        this.fetchPersonList()
-      } else {
-        this.fetchPersonList({
-          long: this.props.location.coords.longitude,
-          lat: this.props.location.coords.latitude,
-        })
-      }
+      this.fetchPersonList(this.props.locationDenied && {
+        long: this.props.location.coords.longitude,
+        lat: this.props.location.coords.latitude,
+      })
     }
   }
 
