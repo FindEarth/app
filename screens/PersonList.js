@@ -30,7 +30,7 @@ class PersonList extends React.Component {
       backgroundColor: Colors.white,
       borderBottomWidth: 1,
       renderTitle: () => (
-        <HeaderTitle  showLogo={true} />
+        <HeaderTitle showLogo={true} />
       ),
     },
   }

@@ -10,8 +10,9 @@ class PersonDetail extends React.Component {
       title: 'Descripción',
       backgroundColor: Colors.white,
       borderBottomWidth: 1,
+      tintColor: Colors.tintColor,
       renderTitle: (route) => (
-        <HeaderTitle title={route.params.name} />
+        <HeaderTitle title={route.params.person.name} />
       ),
     },
   }
