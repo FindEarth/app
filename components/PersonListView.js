@@ -25,26 +25,25 @@ function userImg(user) {
 }
 
 function searchBar(styles) {
-  if (Platform.OS === 'ios') {
-    return <Search
-            backgroundColor={colors.searchHomeBackground}
-            tintColorDelete={colors.gray}
-            inputStyle={styles.inputStyle}
-            placeholder={'Buscar'}
-            cancelTitle={'Cerrar'}
-            titleCancelColor={colors.white}
-            style={styles.search}
-           />
-  }
-  return <SearchBar
-          containerStyle={{
-            backgroundColor: colors.searchHomeBackground,
-            borderColor: colors.searchHomeBackground,
-          }}
-          lightTheme
-          inputStyle={styles.inputStyle}
-          placeholder='Buscar'
-         />
+  return Platform.OS === 'ios' ?
+    <Search
+      backgroundColor={colors.searchHomeBackground}
+      tintColorDelete={colors.gray}
+      inputStyle={styles.inputStyle}
+      placeholder={'Buscar'}
+      cancelTitle={'Cerrar'}
+      titleCancelColor={colors.white}
+      style={styles.search}
+    /> :
+    <SearchBar
+      containerStyle={{
+        backgroundColor: colors.searchHomeBackground,
+        borderColor: colors.searchHomeBackground,
+      }}
+      lightTheme
+      inputStyle={styles.inputStyle}
+      placeholder='Buscar'
+    />
 }
 
 function PersonListView({
