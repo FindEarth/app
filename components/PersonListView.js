@@ -1,6 +1,6 @@
 import React from 'react'
-import { ScrollView, View } from 'react-native'
-import { List, ListItem, Button, Text } from 'react-native-elements'
+import { ScrollView, View, Platform } from 'react-native'
+import { List, ListItem, Button, Text, SearchBar } from 'react-native-elements'
 import PropTypes from 'prop-types'
 import colors from '../constants/Colors'
 import userM from '../assets/images/userM.png'
@@ -24,6 +24,25 @@ function userImg(user) {
   return user.photos.length > 0 ? user.photos[0].url : noImgReplace
 }
 
+function searchBar(styles) {
+  return Platform.OS === 'ios' ?
+    <Search
+      backgroundColor={colors.searchHomeBackground}
+      tintColorDelete={colors.gray}
+      inputStyle={styles.inputStyle}
+      placeholder={'Buscar'}
+      cancelTitle={'Cerrar'}
+      titleCancelColor={colors.white}
+      style={styles.search}
+    /> :
+    <SearchBar
+      containerStyle={styles.androidSearchBarContainer}
+      lightTheme
+      inputStyle={styles.inputStyle}
+      placeholder='Buscar'
+    />
+}
+
 function PersonListView({
   styles,
   list,
@@ -38,15 +57,7 @@ function PersonListView({
 
   return (
     <View style={styles.container}>
-      <Search
-        backgroundColor={colors.searchHomeBackground}
-        tintColorDelete={colors.gray}
-        inputStyle={styles.inputStyle}
-        placeholder={'Buscar'}
-        cancelTitle={'Cerrar'}
-        titleCancelColor={colors.white}
-        style={styles.search}
-      />
+      { searchBar(styles) }
       <ScrollView style={styles.container}>
         { successFetching &&
           <List containerStyle={styles.list}>

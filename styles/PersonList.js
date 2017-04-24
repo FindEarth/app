@@ -57,6 +57,10 @@ const styles = StyleSheet.create({
   userAddressIcon: {
     fontSize: 10,
   },
+  androidSearchBarContainer: {
+    backgroundColor: Colors.searchHomeBackground,
+    borderColor: Colors.searchHomeBackground,
+  },
 })
 
 export default styles
