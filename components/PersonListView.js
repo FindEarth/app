@@ -36,10 +36,7 @@ function searchBar(styles) {
       style={styles.search}
     /> :
     <SearchBar
-      containerStyle={{
-        backgroundColor: colors.searchHomeBackground,
-        borderColor: colors.searchHomeBackground,
-      }}
+      containerStyle={styles.androidSearchBarContainer}
       lightTheme
       inputStyle={styles.inputStyle}
       placeholder='Buscar'
