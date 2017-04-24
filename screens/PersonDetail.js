@@ -20,8 +20,7 @@ class PersonDetail extends React.Component {
     return (
       <PersonDetailView
         styles={Styles}
-        name={this.props.route.params.name}
-        subtitle={this.props.route.params.subtitle}
+        person={this.props.route.params.person}
       />
     )
   }
