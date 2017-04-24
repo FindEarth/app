@@ -1,10 +1,6 @@
 import React from 'react'
 import { Notifications } from 'expo'
-import {
-  StackNavigation,
-  TabNavigation,
-  TabNavigationItem,
-} from '@expo/ex-navigation'
+import { StackNavigation, TabNavigation, TabNavigationItem } from '@expo/ex-navigation'
 import { FontAwesome } from '@expo/vector-icons'
 import styles from '../styles/RootNavigation'
 
