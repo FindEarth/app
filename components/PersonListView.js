@@ -41,6 +41,7 @@ function PersonListView({
       <Search
         backgroundColor={colors.searchHomeBackground}
         tintColorDelete={colors.gray}
+        inputStyle={styles.inputStyle}
         placeholder={'Buscar'}
         cancelTitle={'Cerrar'}
         titleCancelColor={colors.white}

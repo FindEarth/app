@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
   search: {
     marginBottom: 10,
   },
+  inputStyle: {
+    backgroundColor: Colors.grey3,
+  },
   list: {
     marginBottom: -2,
     marginTop: -1,

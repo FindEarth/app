@@ -14,10 +14,11 @@ export default {
   white:                                '#fff',
   gray:                                 '#b9bdbd',
   gray2:                                '#86939e',
+  grey3:                                '#f7f7f7',
   darkGrey:                             '#444242',
   background:                           '#eef0f3',
   transparent:                          'rgba(0, 0, 0, 0)',
   searchHomeBackground:                 'rgba(181, 182, 180, .4)',
-  tabNavigationBackground:              'rgba(224, 224, 224, 1)',
-  tabNavigationBorder:                  'rgba(157, 161, 161, .1)',
+  tabNavigationBackground:              '#eef0f3',
+  tabNavigationBorder:                  'rgba(157, 161, 161, .3)',
 }
