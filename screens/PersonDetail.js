@@ -8,9 +8,8 @@ class PersonDetail extends React.Component {
   static route = {
     navigationBar: {
       title: 'Descripción',
-      backgroundColor: Colors.tintColor,
-      borderBottomWidth: 0,
-      tintColor: Colors.white,
+      backgroundColor: Colors.white,
+      borderBottomWidth: 1,
       renderTitle: (route) => (
         <HeaderTitle title={route.params.name} />
       ),

@@ -24,7 +24,10 @@ class AppContainer extends React.Component {
   async _loadAssetsAsync() {
     try {
       await cacheAssetsAsync({
-        images: [require('./assets/images/expo-wordmark.png')],
+        images: [
+          require('./assets/images/userM.png'),
+          require('./assets/images/userF.png'),
+        ],
         fonts: [
           FontAwesome.font,
           { 'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf') },
@@ -54,7 +57,7 @@ class AppContainer extends React.Component {
               initialRoute={Router.getRoute('rootNavigation')}
             />
           </NavigationProvider>
-          {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
+          {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
         </View>
       </Provider>
     )
