@@ -39,11 +39,12 @@ function PersonListView({
   return (
     <View style={styles.container}>
       <Search
-        backgroundColor={colors.gray}
+        backgroundColor={colors.searchHomeBackground}
         tintColorDelete={colors.gray}
         placeholder={'Buscar'}
         cancelTitle={'Cerrar'}
-        style={{marginBottom: 10}}
+        titleCancelColor={colors.white}
+        style={styles.search}
       />
       <ScrollView style={styles.container}>
         { successFetching &&

@@ -9,13 +9,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   logo: {
-    height: 38,
-    width: 38,
-    marginTop: -3,
+    height: 40,
+    width: 40,
   },
   title: {
-    fontSize: 20,
-    color: Colors.white,
+    fontSize: 17,
+    color: Colors.tintColor,
     marginLeft: 5,
     fontWeight: '500',
   },

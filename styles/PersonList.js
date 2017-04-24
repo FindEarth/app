@@ -9,9 +9,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.background,
   },
+  search: {
+    marginBottom: 10,
+  },
   list: {
-    marginBottom: 20,
+    marginBottom: -2,
     marginTop: -1,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
   },
   errorContainer: {
     flex: 1,
@@ -34,7 +39,7 @@ const styles = StyleSheet.create({
   userDistance: {
     marginLeft: 10,
     marginTop: 5,
-    color: '#86939e',
+    color: Colors.gray2,
   },
   addressContainer: {
     flexDirection: 'row',
@@ -44,7 +49,7 @@ const styles = StyleSheet.create({
   },
   userAddress: {
     lineHeight: 20,
-    color: '#86939e',
+    color: Colors.gray2,
   },
   userAddressIcon: {
     fontSize: 10,

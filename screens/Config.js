@@ -8,11 +8,10 @@ class Config extends React.Component {
   static route = {
     navigationBar: {
       title: 'Opciones',
-      backgroundColor: Colors.tintColor,
-      borderBottomWidth: 0,
-      tintColor: Colors.white,
+      backgroundColor: Colors.white,
+      borderBottomWidth: 1,
       renderTitle: () => (
-        <HeaderTitle title={'Config'} />
+        <HeaderTitle title={'Opciones'} />
       ),
     },
   }

@@ -27,11 +27,10 @@ class PersonList extends React.Component {
   static route = {
     navigationBar: {
       title: 'Personas',
-      backgroundColor: Colors.tintColor,
-      borderBottomWidth: 0,
-      tintColor: Colors.white,
+      backgroundColor: Colors.white,
+      borderBottomWidth: 1,
       renderTitle: () => (
-        <HeaderTitle title={'Peronas'} />
+        <HeaderTitle  showLogo={true} />
       ),
     },
   }

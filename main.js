@@ -25,7 +25,6 @@ class AppContainer extends React.Component {
     try {
       await cacheAssetsAsync({
         images: [
-          require('./assets/icons/app-icon-light.png'),
           require('./assets/images/userM.png'),
           require('./assets/images/userF.png'),
         ],
@@ -56,7 +55,7 @@ class AppContainer extends React.Component {
                 initialRoute={Router.getRoute('rootNavigation')}
               />
             </NavigationProvider>
-            {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
+            {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
           </View>
         </Provider>
       )
