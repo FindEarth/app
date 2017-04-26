@@ -30,6 +30,12 @@ const styles = StyleSheet.create({
     borderTopColor: Colors.grey5,
     marginBottom: -2,
   },
+  map: {
+    height: 150,
+    margin: 10,
+    borderWidth: 1,
+    borderColor: Colors.grey4,
+  },
   titleName: {
     fontWeight: '600',
   },

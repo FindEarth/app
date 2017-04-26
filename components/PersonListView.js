@@ -3,8 +3,6 @@ import { ScrollView, View, Platform } from 'react-native'
 import { List, ListItem, Button, Text, SearchBar } from 'react-native-elements'
 import PropTypes from 'prop-types'
 import colors from '../constants/Colors'
-import userM from '../assets/images/userM.png'
-import userF from '../assets/images/userF.png'
 import Search from 'react-native-search-box'
 import Spinner from 'react-native-loading-spinner-overlay'
 

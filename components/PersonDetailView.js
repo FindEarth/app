@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import FitImage from 'react-native-fit-image'
 import { List, ListItem } from 'react-native-elements'
 import format from 'date-fns/format'
+import MapView from 'react-native-maps'
 
 function PersonDetailView({styles, person}) {
   const requireImage = () => person.gender === 'M'
@@ -11,6 +12,12 @@ function PersonDetailView({styles, person}) {
       : require('../assets/images/userF.png')
 
   const image = person.photos.length ? { uri: person.photos[0].url } : requireImage()
+  const geoMap = {
+    longitude: person.geo.loc[0],
+    latitude: person.geo.loc[1],
+    latitudeDelta: 0.0600,
+    longitudeDelta: 0.0250,
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -24,11 +31,23 @@ function PersonDetailView({styles, person}) {
       <List containerStyle={styles.listContainer}>
         <ListItem
           title={
-            `${person.name} desaparecio el ${format(person.lastSeenAt, 'MM/DD/YYYY')}` +
+            `${person.name} se perdió el ${format(person.lastSeenAt, 'MM/DD/YYYY')}` +
             ` en ${person.geo.address}`
           }
           hideChevron={true}
           titleStyle={styles.titleName}
+          subtitle={
+            <MapView
+              style={styles.map}
+              initialRegion={geoMap}
+            >
+              <MapView.Marker coordinate={geoMap} />
+              <MapView.Circle
+                center={geoMap}
+                radius={1000}
+              />
+            </MapView>
+          }
         />
         { person.description && person.description.clothing &&
           <ListItem
@@ -52,14 +71,6 @@ function PersonDetailView({styles, person}) {
           />
         }
       </List>
-      <MapView
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      />
     </ScrollView>
 
   )
