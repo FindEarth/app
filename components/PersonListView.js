@@ -20,7 +20,9 @@ const iconReloadOptions = {
 }
 
 function userImg(user) {
-  const noImgReplace = user.gender === 'M' ? userM : userF
+  const noImgReplace = user.gender === 'M'
+    ? require('../assets/images/userM.png')
+    : require('../assets/images/userF.png')
   return user.photos.length > 0 ? user.photos[0].url : noImgReplace
 }
 
@@ -66,13 +68,14 @@ function PersonListView({
                 <ListItem
                   roundAvatar
                   avatar={userImg(user)}
+                  avatarStyle={styles.avatarStyle}
                   key={i}
                   title={user.name}
                   subtitle={
                     <View>
                       { user.distance &&
                         <Text style={styles.userDistance}>
-                          {`◉ ${(user.distance.toFixed(1))} ㎞ `}
+                          {`◉ ${(user.distance.toFixed(1))} Km `}
                         </Text>
                       }
                       <View style={styles.addressContainer}>

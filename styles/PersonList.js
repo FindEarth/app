@@ -44,6 +44,11 @@ const styles = StyleSheet.create({
     marginTop: 5,
     color: Colors.gray2,
   },
+  avatarStyle: {
+    borderRadius: 0,
+    height: 68,
+    width: 68,
+  },
   addressContainer: {
     flexDirection: 'row',
     flex: 1,
@@ -56,6 +61,7 @@ const styles = StyleSheet.create({
   },
   userAddressIcon: {
     fontSize: 10,
+    marginTop: 1,
   },
   androidSearchBarContainer: {
     backgroundColor: Colors.searchHomeBackground,
