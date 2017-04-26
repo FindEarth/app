@@ -24,7 +24,10 @@ class AppContainer extends React.Component {
   async _loadAssetsAsync() {
     try {
       await cacheAssetsAsync({
-        images: [require('./assets/images/expo-wordmark.png')],
+        images: [
+          require('./assets/images/userM.png'),
+          require('./assets/images/userF.png'),
+        ],
         fonts: [
           FontAwesome.font,
           { 'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf') },
@@ -33,7 +36,7 @@ class AppContainer extends React.Component {
     } catch (e) {
       console.warn(
         'There was an error caching assets (see: main.js), perhaps due to a ' +
-          'network timeout, so we skipped caching. Reload the app to try again.'
+        'network timeout, so we skipped caching. Reload the app to try again.'
       )
       console.log(e.message)
     } finally {
@@ -42,23 +45,22 @@ class AppContainer extends React.Component {
   }
 
   render() {
-    if (this.state.appIsReady) {
-      return (
-        <Provider store={store}>
-          <View style={styles.container}>
-            <NavigationProvider router={Router}>
-              <StackNavigation
-                id="root"
-                initialRoute={Router.getRoute('rootNavigation')}
-              />
-            </NavigationProvider>
-            {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
-          </View>
-        </Provider>
-      )
-    } else {
+    if (!this.state.appIsReady) {
       return <Expo.AppLoading />
     }
+    return (
+      <Provider store={store}>
+        <View style={styles.container}>
+          <NavigationProvider router={Router}>
+            <StackNavigation
+              id="root"
+              initialRoute={Router.getRoute('rootNavigation')}
+            />
+          </NavigationProvider>
+          {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
+        </View>
+      </Provider>
+    )
   }
 }
 

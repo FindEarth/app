@@ -7,11 +7,10 @@ export default function cacheAssetsAsync({ images = [], fonts = [] }) {
 
 function cacheImages(images) {
   return images.map(image => {
-    if (typeof image === 'string') {
-      return Image.prefetch(image)
-    } else {
+    if (typeof image !== 'string') {
       return Asset.fromModule(image).downloadAsync()
     }
+    return Image.prefetch(image)
   })
 }
 

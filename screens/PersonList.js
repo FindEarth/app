@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Colors from '../constants/Colors'
 import Styles from '../styles/PersonList'
+import HeaderTitle from '../components/HeaderTitle'
 import PersonListView from '../components/PersonListView'
 import { Location, Permissions } from 'expo'
 
@@ -26,14 +27,12 @@ class PersonList extends React.Component {
   static route = {
     navigationBar: {
       title: 'Personas',
-      backgroundColor: Colors.tintColor,
-      borderBottomWidth: 0,
-      tintColor: Colors.white,
+      backgroundColor: Colors.white,
+      borderBottomWidth: 1,
+      renderTitle: () => (
+        <HeaderTitle showLogo={true} />
+      ),
     },
-  }
-
-  componentWillMount() {
-
   }
 
   componentDidMount() {
@@ -52,14 +51,10 @@ class PersonList extends React.Component {
     } catch (e) {
       console.error(e)
     } finally {
-      if (this.props.locationDenied) {
-        this.fetchPersonList()
-      } else {
-        this.fetchPersonList({
-          long: this.props.location.coords.longitude,
-          lat: this.props.location.coords.latitude,
-        })
-      }
+      this.fetchPersonList(!this.props.locationDenied && {
+        long: this.props.location.coords.longitude,
+        lat: this.props.location.coords.latitude,
+      })
     }
   }
 
@@ -68,10 +63,7 @@ class PersonList extends React.Component {
   }
 
   handleListPress = (person) => {
-    this.props.navigator.push('PersonDetail', {
-      name: person.name,
-      subtitle: person.subtitle,
-    })
+    this.props.navigator.push('PersonDetail', { person })
   }
 
   render() {

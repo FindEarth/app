@@ -10,7 +10,9 @@ const styles = StyleSheet.create({
     color: Colors.tabIconSelected,
   },
   tabNavigation: {
-    backgroundColor: Colors.tintColor,
+    backgroundColor: Colors.tabNavigationBackground,
+    borderTopWidth: 1,
+    borderTopColor: Colors.tabNavigationBorder,
   },
 })
 
