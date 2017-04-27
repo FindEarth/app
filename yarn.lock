@@ -1548,6 +1548,10 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
+date-fns@^1.28.3:
+  version "1.28.4"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.28.4.tgz#7938aec34ba31fc8bd134d2344bc2e0bbfd95165"
+
 dateformat@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-2.0.0.tgz#2743e3abb5c3fc2462e527dca445e04e9f4dee17"
@@ -3838,9 +3842,17 @@ react-native-elements@^0.11.1:
   dependencies:
     eventemitter3 "^2.0.2"
 
+react-native-fit-image@^1.4.8:
+  version "1.4.8"
+  resolved "https://registry.yarnpkg.com/react-native-fit-image/-/react-native-fit-image-1.4.8.tgz#b2f6e2f921768bd0e3e718c45333db0bef9b505a"
+
 react-native-loading-spinner-overlay@^0.4.4:
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/react-native-loading-spinner-overlay/-/react-native-loading-spinner-overlay-0.4.4.tgz#a19daea11787b1b539a2fa15945ab6f8bb97cd8c"
+
+react-native-maps@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.14.0.tgz#f0b928f0bef5036472dcd8175f14838884962cad"
 
 "react-native-maps@https://github.com/exponent/react-native-maps/archive/v0.12.2-exp.1.tar.gz":
   version "0.12.2"
@@ -3866,6 +3878,10 @@ react-native-side-menu@^0.20.1:
   dependencies:
     color "^0.11.1"
     lodash "^4.0.0"
+
+react-native-swiper@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/react-native-swiper/-/react-native-swiper-1.5.4.tgz#a85535b5374ef8d605a7a720e447ac46816ac448"
 
 react-native-tab-navigator@^0.3.3:
   version "0.3.3"
