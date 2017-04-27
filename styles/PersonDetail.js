@@ -16,11 +16,16 @@ const styles = StyleSheet.create({
     margin: 0,
     backgroundColor: Colors.white,
     marginTop: -2,
+    marginBottom: -2,
     borderTopWidth: 1,
     borderColor: Colors.grey4,
   },
+  pagination: {
+    color: Colors.tabIconSelected,
+    fontSize: 38,
+  },
   fitImageWithSize: {
-    height: 380,
+    height: 200,
     width,
     marginTop: -2,
     marginBottom: -2,
@@ -43,6 +48,11 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: Colors.tabIconDefault,
     textAlign: 'center',
+  },
+  shareHeader: {
+    position: 'relative',
+    right: 10,
+    top: 15,
   },
 })
 

@@ -25,6 +25,7 @@
     "react-native-loading-spinner-overlay": "^0.4.4",
     "react-native-maps": "^0.14.0",
     "react-native-search-box": "0.0.7",
+    "react-native-swiper": "^1.5.4",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "redux-actions": "^2.0.1",
