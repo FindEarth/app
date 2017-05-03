@@ -7,19 +7,20 @@ const height = Layout.window.height - 260
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background,
+    backgroundColor: Colors.white,
   },
   search: {
     marginBottom: 10,
   },
   inputStyle: {
-    backgroundColor: Colors.grey3,
+    backgroundColor: Colors.white,
   },
   list: {
     marginBottom: -2,
     marginTop: -1,
     borderTopWidth: 1,
-    borderBottomWidth: 1,
+    borderTopColor: Colors.background,
+    borderBottomWidth: 0,
   },
   errorContainer: {
     flex: 1,

@@ -21,6 +21,6 @@ export default {
   background:                           '#eef0f3',
   transparent:                          'rgba(0, 0, 0, 0)',
   searchHomeBackground:                 'rgba(181, 182, 180, .4)',
-  tabNavigationBackground:              '#eef0f3',
+  tabNavigationBackground:              '#f9f9f9',
   tabNavigationBorder:                  'rgba(157, 161, 161, .3)',
 }

@@ -28,7 +28,7 @@ function searchBar(styles) {
   return Platform.OS === 'ios' ?
     <Search
       backgroundColor={colors.searchHomeBackground}
-      tintColorDelete={colors.gray}
+      tintColorDelete={colors.searchHomeBackground}
       inputStyle={styles.inputStyle}
       placeholder={'Buscar'}
       cancelTitle={'Cerrar'}
@@ -79,7 +79,7 @@ function PersonListView({
                       <View style={styles.addressContainer}>
                         <Text style={styles.userAddressIcon}>🌎 </Text>
                         <Text style={styles.userAddress}>
-                          {user.geo.address}
+                          {`${user.geo.city} ${user.geo.country} `}
                         </Text>
                       </View>
                     </View>
