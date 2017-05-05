@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, View, Platform } from 'react-native'
+import { ScrollView, View, Platform, RefreshControl } from 'react-native'
 import { List, ListItem, Button, Text, SearchBar } from 'react-native-elements'
 import PropTypes from 'prop-types'
 import colors from '../constants/Colors'
@@ -52,13 +52,24 @@ function PersonListView({
   successFetching,
   errorFetching,
   error,
+  refreshingList,
+  onRefreshList,
 }) {
   if(error) console.error(error)
 
   return (
     <View style={styles.container}>
       { searchBar(styles) }
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshingList}
+            onRefresh={onRefreshList}
+            tintColor={colors.grey4}
+            colors={[colors.tintColor]}
+          />
+        }
+      >
         { successFetching &&
           <List containerStyle={styles.list}>
             {
@@ -122,6 +133,8 @@ PersonListView.propTypes = {
   successFetching: PropTypes.bool.isRequired,
   errorFetching: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
+  refreshingList: PropTypes.bool.isRequired,
+  onRefreshList: PropTypes.func.isRequired,
 }
 
 export default PersonListView

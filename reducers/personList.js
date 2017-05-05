@@ -3,6 +3,8 @@ import {
   SUCCESS_FETCHING,
   ERROR_FETCHING,
   SET_LOCATION,
+  REFRESHING_PERSON_LIST,
+  SUCCESS_REFRESHING,
 } from '../constants/ActionTypes'
 
 const initialState = {
@@ -13,6 +15,7 @@ const initialState = {
   error: '',
   locationDenied: true,
   location: {},
+  refreshingList: false,
 }
 
 export default function personList(state = initialState, action) {
@@ -39,6 +42,7 @@ export default function personList(state = initialState, action) {
         ...state,
         fetching: false,
         errorFetching: true,
+        refreshingList: false,
         error: action.payload,
       }
 
@@ -47,6 +51,19 @@ export default function personList(state = initialState, action) {
         ...state,
         locationDenied: false,
         location: action.payload,
+      }
+
+    case REFRESHING_PERSON_LIST:
+      return {
+        ...state,
+        refreshingList: true,
+      }
+
+    case SUCCESS_REFRESHING:
+      return {
+        ...state,
+        list: action.payload,
+        refreshingList: false,
       }
 
     default:
