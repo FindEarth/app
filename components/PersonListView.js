@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import colors from '../constants/Colors'
 import Search from 'react-native-search-box'
 import Spinner from 'react-native-loading-spinner-overlay'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 const iconReloadOptions = {
   name: 'repeat',
@@ -80,18 +81,30 @@ function PersonListView({
                   avatarStyle={styles.avatarStyle}
                   key={i}
                   title={user.name}
+                  hideChevron
                   subtitle={
-                    <View>
-                      { user.distance &&
-                        <Text style={styles.userDistance}>
-                          {`◉ ${(user.distance.toFixed(1))} Km `}
-                        </Text>
-                      }
-                      <View style={styles.addressContainer}>
-                        <Text style={styles.userAddressIcon}>🌎 </Text>
-                        <Text style={styles.userAddress}>
-                          {`${user.geo.city} ${user.geo.country} `}
-                        </Text>
+                    <View style={styles.ListItemContent}>
+                      <View>
+                        { user.distance &&
+                          <Text style={styles.userDistance}>
+                            {`◉ ${(user.distance.toFixed(1))} Km `}
+                          </Text>
+                        }
+                        <View style={styles.addressContainer}>
+                          <Text style={styles.userAddressIcon}>🌎 </Text>
+                          <Text style={styles.userAddress}>
+                            {`${user.geo.city} ${user.geo.country} `}
+                          </Text>
+                        </View>
+                      </View>
+                      <View style={styles.arrowRight}>
+                        <Icon
+                          name={Platform.OS === 'ios' ?
+                            'ios-arrow-forward' : 'md-arrow-forward'
+                          }
+                          size={28}
+                          color={colors.tabIconDefault}
+                        />
                       </View>
                     </View>
                   }

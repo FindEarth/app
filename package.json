@@ -26,6 +26,7 @@
     "react-native-maps": "^0.14.0",
     "react-native-search-box": "0.0.7",
     "react-native-swiper": "^1.5.4",
+    "react-native-vector-icons": "^4.1.1",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "redux-actions": "^2.0.1",
