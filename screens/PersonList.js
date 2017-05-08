@@ -13,6 +13,7 @@ import * as allActions from '../actions'
 class PersonList extends React.Component {
 
   static propTypes = {
+    refreshPersonList: PropTypes.func.isRequired,
     fetchPersonList: PropTypes.func.isRequired,
     setLocation: PropTypes.func.isRequired,
     fetching: PropTypes.bool.isRequired,
@@ -22,6 +23,7 @@ class PersonList extends React.Component {
     errorFetching: PropTypes.bool.isRequired,
     locationDenied: PropTypes.bool.isRequired,
     location: PropTypes.object.isRequired,
+    refreshingList: PropTypes.bool.isRequired,
   }
 
   static route = {
@@ -66,6 +68,13 @@ class PersonList extends React.Component {
     this.props.navigator.push('PersonDetail', { person })
   }
 
+  onRefreshList = () => {
+    this.props.refreshPersonList(!this.props.locationDenied && {
+      long: this.props.location.coords.longitude,
+      lat: this.props.location.coords.latitude,
+    })
+  }
+
   render() {
     return (
       <PersonListView
@@ -78,6 +87,8 @@ class PersonList extends React.Component {
         successFetching={this.props.successFetching}
         errorFetching={this.props.errorFetching}
         error={this.props.error}
+        refreshingList={this.props.refreshingList}
+        onRefreshList={this.onRefreshList}
       />
     )
   }
@@ -92,6 +103,7 @@ function mapStateToProps (state) {
     error: state.personList.error,
     locationDenied: state.personList.locationDenied,
     location: state.personList.location,
+    refreshingList: state.personList.refreshingList,
   }
 }
 
@@ -100,6 +112,7 @@ function mapDispatchToProps (dispatch) {
   return {
     fetchPersonList: actions.fetchPersonList,
     setLocation: actions.setLocation,
+    refreshPersonList: actions.refreshPersonList,
   }
 }
 
