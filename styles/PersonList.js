@@ -40,6 +40,14 @@ const styles = StyleSheet.create({
     height: 40,
     width: 200,
   },
+  ListItemContent: {
+    flexDirection: 'row',
+  },
+  arrowRight: {
+    alignItems: 'flex-end',
+    flex: 1,
+    paddingRight: 5,
+  },
   userDistance: {
     marginLeft: 10,
     marginTop: 5,
