@@ -20,7 +20,6 @@
     "prop-types": "^15.5.0",
     "react": "~15.5.0",
     "react-native": "https://github.com/exponent/react-native/archive/sdk-15.0.0.tar.gz",
-    "react-native-animatable": "^1.2.0",
     "react-native-elements": "^0.11.1",
     "react-native-fit-image": "^1.4.8",
     "react-native-loading-spinner-overlay": "^0.4.4",
