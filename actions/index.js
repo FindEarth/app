@@ -5,6 +5,7 @@ import {
   SET_LOCATION,
   REFRESHING_PERSON_LIST,
   SUCCESS_REFRESHING,
+  ERROR_REFRESHING,
 } from '../constants/ActionTypes'
 import { createAction } from 'redux-actions'
 import Api from '../constants/Api'
@@ -15,6 +16,7 @@ export const successFetching = createAction(SUCCESS_FETCHING)
 export const setLocation = createAction(SET_LOCATION)
 export const refreshingPersonList = createAction(REFRESHING_PERSON_LIST)
 export const successRefreshing = createAction(SUCCESS_REFRESHING)
+export const errorRefreshing = createAction(ERROR_REFRESHING)
 
 export function fetchPersonList(pos) {
   return function(dispatch) {
@@ -28,6 +30,7 @@ export function fetchPersonList(pos) {
       }))
       .catch(err => {
         dispatch(errorFetching(err.message))
+        console.log('Error fetching Person list', err.message)
       })
   }
 }
@@ -43,7 +46,8 @@ export function refreshPersonList(pos) {
         dispatch(successRefreshing(json))
       }))
       .catch(err => {
-        dispatch(errorFetching(err.message))
+        dispatch(errorRefreshing(err.message))
+        console.log('Error refreshing Person list', err.message)
       })
   }
 }

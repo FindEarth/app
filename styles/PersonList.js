@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 import Colors from '../constants/Colors'
 import Layout from '../constants/Layout'
 
-const height = Layout.window.height - 260
+const height = Layout.window.height - 200
 
 const styles = StyleSheet.create({
   container: {
@@ -11,6 +11,17 @@ const styles = StyleSheet.create({
   },
   search: {
     marginBottom: 10,
+  },
+  toasterContainer: {
+    backgroundColor: Colors.gray,
+    height: 40,
+    margin: 0,
+    padding: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  toasterText: {
+    color: Colors.darkGray,
   },
   inputStyle: {
     backgroundColor: Colors.white,
@@ -29,8 +40,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  errorIconContainer: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   errorText: {
-    marginTop: 8,
     color: Colors.gray,
     fontSize: 17,
     fontWeight: 'normal',

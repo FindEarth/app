@@ -24,6 +24,7 @@ class PersonList extends React.Component {
     locationDenied: PropTypes.bool.isRequired,
     location: PropTypes.object.isRequired,
     refreshingList: PropTypes.bool.isRequired,
+    errorRefreshing: PropTypes.bool.isRequired,
   }
 
   static route = {
@@ -51,7 +52,7 @@ class PersonList extends React.Component {
         this.props.setLocation(location)
       }
     } catch (e) {
-      console.error(e)
+      console.log('error', e)
     } finally {
       this.fetchPersonList(!this.props.locationDenied && {
         long: this.props.location.coords.longitude,
@@ -75,6 +76,13 @@ class PersonList extends React.Component {
     })
   }
 
+  onSearchIosPersonList = (text) => {
+    return new Promise((resolve, reject) => {
+      console.log('onChangeText', text)
+      resolve()
+    })
+  }
+
   render() {
     return (
       <PersonListView
@@ -89,6 +97,8 @@ class PersonList extends React.Component {
         error={this.props.error}
         refreshingList={this.props.refreshingList}
         onRefreshList={this.onRefreshList}
+        onSearchIosPersonList={this.onSearchIosPersonList}
+        errorRefreshing={this.props.errorRefreshing}
       />
     )
   }
@@ -104,6 +114,7 @@ function mapStateToProps (state) {
     locationDenied: state.personList.locationDenied,
     location: state.personList.location,
     refreshingList: state.personList.refreshingList,
+    errorRefreshing: state.personList.errorRefreshing,
   }
 }
 

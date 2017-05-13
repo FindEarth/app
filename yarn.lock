@@ -3893,6 +3893,10 @@ react-native-tab-view@0.0.52:
   version "0.0.52"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-0.0.52.tgz#61655f93974ff4f26f02bd739566848984ad53c7"
 
+react-native-toaster@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-toaster/-/react-native-toaster-1.1.0.tgz#ea95a90101bca61a64d374d5b834399c982ab3d4"
+
 react-native-vector-icons@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-4.0.0.tgz#6a2f8f4c6ace613aed7748cd530809283e5b1538"
