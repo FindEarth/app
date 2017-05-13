@@ -16,6 +16,8 @@ class PersonList extends React.Component {
     refreshPersonList: PropTypes.func.isRequired,
     fetchPersonList: PropTypes.func.isRequired,
     setLocation: PropTypes.func.isRequired,
+    onSearchPersonList: PropTypes.func.isRequired,
+    clearFilterPersonList: PropTypes.func.isRequired,
     fetching: PropTypes.bool.isRequired,
     personList: PropTypes.array.isRequired,
     error: PropTypes.string.isRequired,
@@ -78,7 +80,14 @@ class PersonList extends React.Component {
 
   onSearchIosPersonList = (text) => {
     return new Promise((resolve, reject) => {
-      console.log('onChangeText', text)
+      this.props.onSearchPersonList(text)
+      resolve()
+    })
+  }
+
+  clearFilterPersonList = () => {
+    return new Promise((resolve, reject) => {
+      this.props.clearFilterPersonList()
       resolve()
     })
   }
@@ -99,6 +108,7 @@ class PersonList extends React.Component {
         onRefreshList={this.onRefreshList}
         onSearchIosPersonList={this.onSearchIosPersonList}
         errorRefreshing={this.props.errorRefreshing}
+        clearFilterPersonList={this.clearFilterPersonList}
       />
     )
   }
@@ -109,7 +119,7 @@ function mapStateToProps (state) {
     fetching: state.personList.fetching,
     successFetching: state.personList.successFetching,
     errorFetching: state.personList.errorFetching,
-    personList: state.personList.list,
+    personList: state.personList.filteredList,
     error: state.personList.error,
     locationDenied: state.personList.locationDenied,
     location: state.personList.location,
@@ -124,6 +134,8 @@ function mapDispatchToProps (dispatch) {
     fetchPersonList: actions.fetchPersonList,
     setLocation: actions.setLocation,
     refreshPersonList: actions.refreshPersonList,
+    onSearchPersonList: actions.onSearchPersonList,
+    clearFilterPersonList: actions.clearFilterPersonList,
   }
 }
 

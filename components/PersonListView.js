@@ -12,7 +12,7 @@ import colors from '../constants/Colors'
 import Search from 'react-native-search-box'
 import Spinner from 'react-native-loading-spinner-overlay'
 import Icon from 'react-native-vector-icons/Ionicons'
-import Toaster, { ToastStyles } from 'react-native-toaster'
+import Toaster from 'react-native-toaster'
 
 function userImg(user) {
   const noImgReplace = user.gender === 'M'
@@ -21,7 +21,7 @@ function userImg(user) {
   return user.photos.length > 0 ? user.photos[0].url : noImgReplace
 }
 
-function searchBar(styles, onSearchIosPersonList) {
+function searchBar(styles, onSearchIosPersonList, clearFilterPersonList) {
   return Platform.OS === 'ios' ?
     <Search
       backgroundColor={colors.searchHomeBackground}
@@ -32,12 +32,16 @@ function searchBar(styles, onSearchIosPersonList) {
       titleCancelColor={colors.white}
       style={styles.search}
       onChangeText={(txt) => onSearchIosPersonList(txt)}
+      onCancel={clearFilterPersonList}
+      onDelete={clearFilterPersonList}
     /> :
     <SearchBar
       containerStyle={styles.androidSearchBarContainer}
       lightTheme
+      textInputRef={'searchBar'}
       inputStyle={styles.inputStyle}
       placeholder='Buscar'
+      onChangeText={(txt) => onSearchIosPersonList(txt)}
     />
 }
 
@@ -54,6 +58,7 @@ function PersonListView({
   onRefreshList,
   onSearchIosPersonList,
   errorRefreshing,
+  clearFilterPersonList,
 }) {
   const toasterOpt = {
     text: 'Error de conección intente de nuevo',
@@ -65,7 +70,7 @@ function PersonListView({
 
   return (
     <View style={styles.container}>
-      { searchBar(styles, onSearchIosPersonList) }
+      { searchBar(styles, onSearchIosPersonList, clearFilterPersonList) }
       { errorRefreshing &&
         <Toaster message={toasterOpt} duration={1500} />
       }
@@ -165,6 +170,7 @@ PersonListView.propTypes = {
   onRefreshList: PropTypes.func.isRequired,
   onSearchIosPersonList: PropTypes.func.isRequired,
   errorRefreshing: PropTypes.bool.isRequired,
+  clearFilterPersonList: PropTypes.func.isRequired,
 }
 
 export default PersonListView
