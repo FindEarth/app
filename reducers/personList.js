@@ -5,6 +5,7 @@ import {
   SET_LOCATION,
   REFRESHING_PERSON_LIST,
   SUCCESS_REFRESHING,
+  ERROR_REFRESHING,
 } from '../constants/ActionTypes'
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   locationDenied: true,
   location: {},
   refreshingList: false,
+  errorRefreshing: false,
 }
 
 export default function personList(state = initialState, action) {
@@ -57,12 +59,20 @@ export default function personList(state = initialState, action) {
       return {
         ...state,
         refreshingList: true,
+        errorRefreshing: false,
       }
 
     case SUCCESS_REFRESHING:
       return {
         ...state,
         list: action.payload,
+        refreshingList: false,
+      }
+
+    case ERROR_REFRESHING:
+      return {
+        ...state,
+        errorRefreshing: true,
         refreshingList: false,
       }
 
