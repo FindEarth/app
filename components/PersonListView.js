@@ -125,6 +125,11 @@ function PersonListView({
                 />
               ))
             }
+            { !list.length &&
+              <Text style={styles.noFoundListText}>
+                Su Búsqueda no coincide asegurese que no contenga errores
+              </Text>
+            }
           </List>
         }
         <Spinner

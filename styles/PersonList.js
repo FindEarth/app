@@ -91,6 +91,12 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.searchHomeBackground,
     borderColor: Colors.searchHomeBackground,
   },
+  noFoundListText: {
+    color: Colors.gray,
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 17,
+  },
 })
 
 export default styles
