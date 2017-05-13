@@ -6,6 +6,8 @@ import {
   REFRESHING_PERSON_LIST,
   SUCCESS_REFRESHING,
   ERROR_REFRESHING,
+  FILTER_PERSON_LIST,
+  CLEAR_FILTER_PERSON_LIST,
 } from '../constants/ActionTypes'
 import { createAction } from 'redux-actions'
 import Api from '../constants/Api'
@@ -17,6 +19,8 @@ export const setLocation = createAction(SET_LOCATION)
 export const refreshingPersonList = createAction(REFRESHING_PERSON_LIST)
 export const successRefreshing = createAction(SUCCESS_REFRESHING)
 export const errorRefreshing = createAction(ERROR_REFRESHING)
+export const filterPersonList = createAction(FILTER_PERSON_LIST)
+export const clearFilterPersonList = createAction(CLEAR_FILTER_PERSON_LIST)
 
 export function fetchPersonList(pos) {
   return function(dispatch) {
@@ -49,5 +53,13 @@ export function refreshPersonList(pos) {
         dispatch(errorRefreshing(err.message))
         console.log('Error refreshing Person list', err.message)
       })
+  }
+}
+
+export function onSearchPersonList(str) {
+  return function(dispatch, getState) {
+    const list = getState().personList.list
+    const filteredList = list.filter((person) => person.name.includes(str))
+    dispatch(filterPersonList(filteredList))
   }
 }
