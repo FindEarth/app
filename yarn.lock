@@ -3745,7 +3745,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.0.0, prop-types@^15.5.0, prop-types@^15.5.4, prop-types@^15.5.7:
+prop-types@^15.0.0, prop-types@^15.5.0, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.5.8:
   version "15.5.8"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.8.tgz#6b7b2e141083be38c8595aa51fc55775c7199394"
   dependencies:
@@ -3898,6 +3898,14 @@ react-native-vector-icons@4.0.0:
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-4.0.0.tgz#6a2f8f4c6ace613aed7748cd530809283e5b1538"
   dependencies:
     lodash "^4.0.0"
+    yargs "^6.3.0"
+
+react-native-vector-icons@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-4.1.1.tgz#9ac75bde77d9243346668c51dca7756775428087"
+  dependencies:
+    lodash "^4.0.0"
+    prop-types "^15.5.8"
     yargs "^6.3.0"
 
 "react-native@https://github.com/exponent/react-native/archive/sdk-15.0.0.tar.gz":
