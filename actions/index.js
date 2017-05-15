@@ -59,7 +59,8 @@ export function refreshPersonList(pos) {
 export function onSearchPersonList(str) {
   return function(dispatch, getState) {
     const list = getState().personList.list
-    const filteredList = list.filter((person) => person.name.includes(str))
+    const filteredList = list.filter((person) => (
+      person.name.toLowerCase().includes(str.toLowerCase())))
     dispatch(filterPersonList(filteredList))
   }
 }

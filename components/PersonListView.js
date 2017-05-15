@@ -22,6 +22,11 @@ function userImg(user) {
 }
 
 function searchBar(styles, onSearchIosPersonList, clearFilterPersonList) {
+  const andoidClearIcon = {
+    color: colors.gray2,
+    style: styles.andoidClearIcon,
+  }
+
   return Platform.OS === 'ios' ?
     <Search
       backgroundColor={colors.searchHomeBackground}
@@ -38,6 +43,7 @@ function searchBar(styles, onSearchIosPersonList, clearFilterPersonList) {
     <SearchBar
       containerStyle={styles.androidSearchBarContainer}
       lightTheme
+      clearIcon={andoidClearIcon}
       textInputRef={'searchBar'}
       inputStyle={styles.inputStyle}
       placeholder='Buscar'

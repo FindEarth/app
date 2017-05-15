@@ -97,6 +97,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 17,
   },
+  andoidClearIcon: {
+    marginTop: 3,
+  },
 })
 
 export default styles
