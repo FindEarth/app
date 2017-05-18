@@ -99,11 +99,13 @@ function PersonListView({
                   avatar={userImg(user)}
                   avatarStyle={styles.avatarStyle}
                   key={i}
-                  title={user.name}
                   hideChevron
                   subtitle={
                     <View style={styles.ListItemContent}>
-                      <View>
+                      <View style={styles.descriptionLeft}>
+                        <Text style={styles.userTitle}>
+                          {user.name}
+                        </Text>
                         { user.distance &&
                           <Text style={styles.userDistance}>
                             {`◉ ${(user.distance.toFixed(1))} Km `}

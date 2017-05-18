@@ -60,8 +60,12 @@ const styles = StyleSheet.create({
   },
   arrowRight: {
     alignItems: 'flex-end',
+    justifyContent: 'center',
     flex: 1,
-    paddingRight: 5,
+    paddingRight: 6,
+  },
+  descriptionLeft: {
+    flex: 7,
   },
   userDistance: {
     marginLeft: 10,
@@ -72,6 +76,12 @@ const styles = StyleSheet.create({
     borderRadius: 34,
     height: 68,
     width: 68,
+    backgroundColor: Colors.gray5,
+  },
+  userTitle: {
+    marginLeft: 10,
+    color: Colors.grey7,
+    fontSize: 15,
   },
   addressContainer: {
     flexDirection: 'row',
@@ -85,7 +95,7 @@ const styles = StyleSheet.create({
   },
   userAddressIcon: {
     fontSize: 10,
-    marginTop: 1,
+    marginTop: 2,
   },
   androidSearchBarContainer: {
     backgroundColor: Colors.searchHomeBackground,

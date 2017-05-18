@@ -3,7 +3,11 @@ import Colors from '../constants/Colors'
 import Styles from '../styles/PersonDetail'
 import HeaderTitle from '../components/HeaderTitle'
 import PersonDetailView from '../components/PersonDetailView'
-import { FontAwesome } from '@expo/vector-icons'
+
+const rightIcon = {
+  ios: 'ios-share-outline',
+  android: 'md-share',
+}
 
 class PersonDetail extends React.Component {
   static route = {
@@ -13,14 +17,9 @@ class PersonDetail extends React.Component {
       borderBottomWidth: 1,
       tintColor: Colors.tintColor,
       renderTitle: (route) => (
-        <HeaderTitle title={route.params.person.name} />
-      ),
-      renderRight: () => (
-        <FontAwesome
-          name={'share-alt'}
-          size={18}
-          color={Colors.tintColor}
-          style={Styles.shareHeader}
+        <HeaderTitle
+          title={route.params.person.name}
+          rightIcon={rightIcon}
         />
       ),
     },

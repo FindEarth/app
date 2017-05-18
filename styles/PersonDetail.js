@@ -7,18 +7,15 @@ const width = Layout.window.width
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background,
+    backgroundColor: Colors.white,
   },
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-    margin: 0,
-    backgroundColor: Colors.white,
-    marginTop: -2,
-    marginBottom: -2,
-    borderTopWidth: 1,
-    borderColor: Colors.grey4,
+    backgroundColor: Colors.grey3,
+    paddingTop: 15,
+    paddingBottom: 15,
   },
   pagination: {
     color: Colors.tabIconSelected,
@@ -27,32 +24,22 @@ const styles = StyleSheet.create({
   fitImageWithSize: {
     height: 200,
     width,
-    marginTop: -2,
-    marginBottom: -2,
   },
-  listContainer: {
-    marginTop: 0,
-    borderTopColor: Colors.grey5,
-    marginBottom: -2,
+  swiper: {
+    position: 'relative',
+  },
+  mapContainer: {
+    borderColor: Colors.grey6,
   },
   map: {
-    height: 150,
-    margin: 10,
-    borderWidth: 1,
-    borderColor: Colors.grey4,
+    height: 257,
+    marginRight: 15,
+    marginLeft: 15,
   },
   titleName: {
-    fontWeight: '600',
-  },
-  titleHelp: {
-    fontSize: 13,
-    color: Colors.tabIconDefault,
+    padding: 10,
     textAlign: 'center',
-  },
-  shareHeader: {
-    position: 'relative',
-    right: 10,
-    top: 15,
+    color: Colors.darkGrey,
   },
 })
 
