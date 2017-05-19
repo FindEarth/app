@@ -7,6 +7,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
+    position: 'relative',
+  },
+  rightIcon: {
+    position: 'absolute',
+    right: 10,
   },
   logo: {
     height: 40,

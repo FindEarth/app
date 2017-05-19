@@ -18,6 +18,7 @@ class PersonList extends React.Component {
     setLocation: PropTypes.func.isRequired,
     onSearchPersonList: PropTypes.func.isRequired,
     clearFilterPersonList: PropTypes.func.isRequired,
+    onPersonSelected: PropTypes.func.isRequired,
     fetching: PropTypes.bool.isRequired,
     personList: PropTypes.array.isRequired,
     error: PropTypes.string.isRequired,
@@ -69,6 +70,7 @@ class PersonList extends React.Component {
 
   handleListPress = (person) => {
     this.props.navigator.push('PersonDetail', { person })
+    this.props.onPersonSelected(person)
   }
 
   onRefreshList = () => {
@@ -136,6 +138,7 @@ function mapDispatchToProps (dispatch) {
     refreshPersonList: actions.refreshPersonList,
     onSearchPersonList: actions.onSearchPersonList,
     clearFilterPersonList: actions.clearFilterPersonList,
+    onPersonSelected: actions.onPersonSelected,
   }
 }
 

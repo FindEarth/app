@@ -17,6 +17,8 @@ export default {
   grey3:                                '#f7f7f7',
   grey4:                                '#d7d7d7',
   grey5:                                '#eeeeee',
+  grey6:                                '#c7c7c7',
+  grey7:                                '#43484d',
   darkGrey:                             '#444242',
   background:                           '#eef0f3',
   transparent:                          'rgba(0, 0, 0, 0)',

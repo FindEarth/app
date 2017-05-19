@@ -57,7 +57,7 @@ class AppContainer extends React.Component {
               initialRoute={Router.getRoute('rootNavigation')}
             />
           </NavigationProvider>
-          {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
+          {Platform.OS === 'ios' && <StatusBar barStyle='dark-content' />}
         </View>
       </Provider>
     )

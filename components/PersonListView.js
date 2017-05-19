@@ -1,10 +1,10 @@
 import React from 'react'
 import {
-ScrollView,
-View,
-Platform,
-RefreshControl,
-TouchableHighlight,
+  ScrollView,
+  View,
+  Platform,
+  RefreshControl,
+  TouchableHighlight,
 } from 'react-native'
 import { List, ListItem, Text, SearchBar } from 'react-native-elements'
 import PropTypes from 'prop-types'
@@ -99,11 +99,13 @@ function PersonListView({
                   avatar={userImg(user)}
                   avatarStyle={styles.avatarStyle}
                   key={i}
-                  title={user.name}
                   hideChevron
                   subtitle={
                     <View style={styles.ListItemContent}>
-                      <View>
+                      <View style={styles.descriptionLeft}>
+                        <Text style={styles.userTitle}>
+                          {user.name}
+                        </Text>
                         { user.distance &&
                           <Text style={styles.userDistance}>
                             {`◉ ${(user.distance.toFixed(1))} Km `}
