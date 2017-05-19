@@ -41,6 +41,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: Colors.darkGrey,
   },
+  toasterContainer: {
+    backgroundColor: Colors.gray,
+    height: 30,
+    margin: 0,
+    padding: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  toasterText: {
+    color: Colors.darkGray,
+  },
 })
 
 export default styles

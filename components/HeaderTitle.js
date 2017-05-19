@@ -13,7 +13,6 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import Colors from '../constants/Colors'
 
 function HeaderTitle({title, showLogo, rightIcon}) {
-  console.log('rightIcon', rightIcon)
   return (
     <View style={Styles.container}>
       { showLogo && <Image source={logo} style={Styles.logo} /> }

@@ -1,10 +1,10 @@
 import React from 'react'
 import {
-ScrollView,
-View,
-Platform,
-RefreshControl,
-TouchableHighlight,
+  ScrollView,
+  View,
+  Platform,
+  RefreshControl,
+  TouchableHighlight,
 } from 'react-native'
 import { List, ListItem, Text, SearchBar } from 'react-native-elements'
 import PropTypes from 'prop-types'
