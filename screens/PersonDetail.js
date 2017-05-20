@@ -4,6 +4,7 @@ import Colors from '../constants/Colors'
 import Styles from '../styles/PersonDetail'
 import HeaderTitle from '../components/HeaderTitle'
 import PersonDetailView from '../components/PersonDetailView'
+import { Share } from 'react-native'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -12,6 +13,35 @@ import * as allActions from '../actions'
 const rightIcon = {
   ios: 'ios-share-outline',
   android: 'md-share',
+  onPress: personShare,
+}
+
+const shareOptions = {
+  url: '',
+  name: '',
+}
+
+function personShare() {
+  Share.share({
+      message: `Ayudanos a encontrar a ${shareOptions.name}`,
+      url: shareOptions.url,
+      title: `Compartir ${shareOptions.name}`,
+    }, {
+      dialogTitle: 'Compartir',
+    }
+  )
+  .then((result) => {
+    if (result.action === Share.sharedAction) {
+      if (result.activityType) {
+        console.log('Shared with an activityType: ', result.activityType)
+      } else {
+        console.log('Shared')
+      }
+    } else if (result.action === Share.dismissedAction) {
+      console.log('Dismissed')
+    }
+  })
+  .catch((error) => console.log(error.message))
 }
 
 class PersonDetail extends React.Component {
@@ -50,6 +80,8 @@ class PersonDetail extends React.Component {
     const person = this.props.personSelected
     if (person) {
       this.props.route.params.person.name = person.name
+      shareOptions.name = person.name
+      shareOptions.url = `https://find.earth/person/${person._id}`
     }
   }
 

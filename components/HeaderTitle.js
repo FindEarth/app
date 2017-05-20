@@ -1,10 +1,10 @@
 import React from 'react'
 import {
-View,
-Text,
-Image,
-TouchableHighlight,
-Platform,
+  View,
+  Text,
+  Image,
+  TouchableHighlight,
+  Platform,
 } from 'react-native'
 import PropTypes from 'prop-types'
 import Styles from '../styles/HeaderTitle'
@@ -20,7 +20,7 @@ function HeaderTitle({title, showLogo, rightIcon}) {
       { rightIcon &&
         <View style={Styles.rightIcon}>
           <TouchableHighlight
-            onPress={() => null}
+            onPress={rightIcon.onPress}
             underlayColor={Colors.white}
             activeOpacity={0.7}
           >
