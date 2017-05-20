@@ -17,8 +17,8 @@ const rightIcon = {
 }
 
 const shareOptions = {
-  url: '',
-  name: '',
+  url: 'https://find.earth/',
+  name: 'personas perdidas',
 }
 
 function personShare() {
