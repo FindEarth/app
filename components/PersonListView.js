@@ -39,6 +39,8 @@ function searchBar(styles, onSearchIosPersonList, clearFilterPersonList) {
       onChangeText={(txt) => onSearchIosPersonList(txt)}
       onCancel={clearFilterPersonList}
       onDelete={clearFilterPersonList}
+      autoCorrect={false}
+      autoCapitalize={'none'}
     /> :
     <SearchBar
       containerStyle={styles.androidSearchBarContainer}
@@ -48,6 +50,8 @@ function searchBar(styles, onSearchIosPersonList, clearFilterPersonList) {
       inputStyle={styles.inputStyle}
       placeholder='Buscar'
       onChangeText={(txt) => onSearchIosPersonList(txt)}
+      autoCorrect={false}
+      autoCapitalize={'none'}
     />
 }
 
