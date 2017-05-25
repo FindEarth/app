@@ -13,8 +13,12 @@ import * as allActions from '../actions'
 class PersonList extends React.Component {
 
   static propTypes = {
+    refreshPersonList: PropTypes.func.isRequired,
     fetchPersonList: PropTypes.func.isRequired,
     setLocation: PropTypes.func.isRequired,
+    onSearchPersonList: PropTypes.func.isRequired,
+    clearFilterPersonList: PropTypes.func.isRequired,
+    onPersonSelected: PropTypes.func.isRequired,
     fetching: PropTypes.bool.isRequired,
     personList: PropTypes.array.isRequired,
     error: PropTypes.string.isRequired,
@@ -22,6 +26,8 @@ class PersonList extends React.Component {
     errorFetching: PropTypes.bool.isRequired,
     locationDenied: PropTypes.bool.isRequired,
     location: PropTypes.object.isRequired,
+    refreshingList: PropTypes.bool.isRequired,
+    errorRefreshing: PropTypes.bool.isRequired,
   }
 
   static route = {
@@ -49,7 +55,7 @@ class PersonList extends React.Component {
         this.props.setLocation(location)
       }
     } catch (e) {
-      console.error(e)
+      console.log('error', e)
     } finally {
       this.fetchPersonList(!this.props.locationDenied && {
         long: this.props.location.coords.longitude,
@@ -64,6 +70,28 @@ class PersonList extends React.Component {
 
   handleListPress = (person) => {
     this.props.navigator.push('PersonDetail', { person })
+    this.props.onPersonSelected(person)
+  }
+
+  onRefreshList = () => {
+    this.props.refreshPersonList(!this.props.locationDenied && {
+      long: this.props.location.coords.longitude,
+      lat: this.props.location.coords.latitude,
+    })
+  }
+
+  onSearchIosPersonList = (text) => {
+    return new Promise((resolve, reject) => {
+      this.props.onSearchPersonList(text)
+      resolve()
+    })
+  }
+
+  clearFilterPersonList = () => {
+    return new Promise((resolve, reject) => {
+      this.props.clearFilterPersonList()
+      resolve()
+    })
   }
 
   render() {
@@ -78,6 +106,11 @@ class PersonList extends React.Component {
         successFetching={this.props.successFetching}
         errorFetching={this.props.errorFetching}
         error={this.props.error}
+        refreshingList={this.props.refreshingList}
+        onRefreshList={this.onRefreshList}
+        onSearchIosPersonList={this.onSearchIosPersonList}
+        errorRefreshing={this.props.errorRefreshing}
+        clearFilterPersonList={this.clearFilterPersonList}
       />
     )
   }
@@ -88,10 +121,12 @@ function mapStateToProps (state) {
     fetching: state.personList.fetching,
     successFetching: state.personList.successFetching,
     errorFetching: state.personList.errorFetching,
-    personList: state.personList.list,
+    personList: state.personList.filteredList,
     error: state.personList.error,
     locationDenied: state.personList.locationDenied,
     location: state.personList.location,
+    refreshingList: state.personList.refreshingList,
+    errorRefreshing: state.personList.errorRefreshing,
   }
 }
 
@@ -100,6 +135,10 @@ function mapDispatchToProps (dispatch) {
   return {
     fetchPersonList: actions.fetchPersonList,
     setLocation: actions.setLocation,
+    refreshPersonList: actions.refreshPersonList,
+    onSearchPersonList: actions.onSearchPersonList,
+    clearFilterPersonList: actions.clearFilterPersonList,
+    onPersonSelected: actions.onPersonSelected,
   }
 }
 

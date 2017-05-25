@@ -1,45 +1,57 @@
 import React from 'react'
-import { ScrollView, View, Platform } from 'react-native'
-import { List, ListItem, Button, Text, SearchBar } from 'react-native-elements'
+import {
+  ScrollView,
+  View,
+  Platform,
+  RefreshControl,
+  TouchableHighlight,
+} from 'react-native'
+import { List, ListItem, Text, SearchBar } from 'react-native-elements'
 import PropTypes from 'prop-types'
 import colors from '../constants/Colors'
-import userM from '../assets/images/userM.png'
-import userF from '../assets/images/userF.png'
 import Search from 'react-native-search-box'
 import Spinner from 'react-native-loading-spinner-overlay'
-
-const iconReloadOptions = {
-  name: 'repeat',
-  type: 'font-awesome',
-  size: 35,
-  style: {
-    color: colors.gray,
-    position: 'relative',
-    left: 5,
-  },
-}
+import Icon from 'react-native-vector-icons/Ionicons'
+import Toaster from 'react-native-toaster'
 
 function userImg(user) {
-  const noImgReplace = user.gender === 'M' ? userM : userF
+  const noImgReplace = user.gender === 'M'
+    ? require('../assets/images/userM.png')
+    : require('../assets/images/userF.png')
   return user.photos.length > 0 ? user.photos[0].url : noImgReplace
 }
 
-function searchBar(styles) {
+function searchBar(styles, onSearchIosPersonList, clearFilterPersonList) {
+  const andoidClearIcon = {
+    color: colors.gray2,
+    style: styles.andoidClearIcon,
+  }
+
   return Platform.OS === 'ios' ?
     <Search
       backgroundColor={colors.searchHomeBackground}
-      tintColorDelete={colors.gray}
+      tintColorDelete={colors.searchHomeBackground}
       inputStyle={styles.inputStyle}
       placeholder={'Buscar'}
       cancelTitle={'Cerrar'}
       titleCancelColor={colors.white}
       style={styles.search}
+      onChangeText={(txt) => onSearchIosPersonList(txt)}
+      onCancel={clearFilterPersonList}
+      onDelete={clearFilterPersonList}
+      autoCorrect={false}
+      autoCapitalize={'none'}
     /> :
     <SearchBar
       containerStyle={styles.androidSearchBarContainer}
       lightTheme
+      clearIcon={andoidClearIcon}
+      textInputRef={'searchBar'}
       inputStyle={styles.inputStyle}
       placeholder='Buscar'
+      onChangeText={(txt) => onSearchIosPersonList(txt)}
+      autoCorrect={false}
+      autoCapitalize={'none'}
     />
 }
 
@@ -52,13 +64,36 @@ function PersonListView({
   successFetching,
   errorFetching,
   error,
+  refreshingList,
+  onRefreshList,
+  onSearchIosPersonList,
+  errorRefreshing,
+  clearFilterPersonList,
 }) {
-  if(error) console.error(error)
+  const toasterOpt = {
+    text: 'Error de conección intente de nuevo',
+    styles: {
+      container: styles.toasterContainer,
+      text: styles.toasterText,
+    },
+  }
 
   return (
     <View style={styles.container}>
-      { searchBar(styles) }
-      <ScrollView style={styles.container}>
+      { searchBar(styles, onSearchIosPersonList, clearFilterPersonList) }
+      { errorRefreshing &&
+        <Toaster message={toasterOpt} duration={1500} />
+      }
+      <ScrollView style={styles.container}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshingList}
+            onRefresh={onRefreshList}
+            tintColor={colors.grey4}
+            colors={[colors.tintColor]}
+          />
+        }
+      >
         { successFetching &&
           <List containerStyle={styles.list}>
             {
@@ -66,20 +101,35 @@ function PersonListView({
                 <ListItem
                   roundAvatar
                   avatar={userImg(user)}
+                  avatarStyle={styles.avatarStyle}
                   key={i}
-                  title={user.name}
+                  hideChevron
                   subtitle={
-                    <View>
-                      { user.distance &&
-                        <Text style={styles.userDistance}>
-                          {`◉ ${(user.distance.toFixed(1))} ㎞ `}
+                    <View style={styles.ListItemContent}>
+                      <View style={styles.descriptionLeft}>
+                        <Text style={styles.userTitle}>
+                          {user.name}
                         </Text>
-                      }
-                      <View style={styles.addressContainer}>
-                        <Text style={styles.userAddressIcon}>🌎 </Text>
-                        <Text style={styles.userAddress}>
-                          {user.geo.address}
-                        </Text>
+                        { user.distance &&
+                          <Text style={styles.userDistance}>
+                            {`◉ ${(user.distance.toFixed(1))} Km `}
+                          </Text>
+                        }
+                        <View style={styles.addressContainer}>
+                          <Text style={styles.userAddressIcon}>🌎 </Text>
+                          <Text style={styles.userAddress}>
+                            {`${user.geo.city} ${user.geo.country} `}
+                          </Text>
+                        </View>
+                      </View>
+                      <View style={styles.arrowRight}>
+                        <Icon
+                          name={Platform.OS === 'ios' ?
+                            'ios-arrow-forward' : 'md-arrow-forward'
+                          }
+                          size={28}
+                          color={colors.tabIconDefault}
+                        />
                       </View>
                     </View>
                   }
@@ -87,24 +137,36 @@ function PersonListView({
                 />
               ))
             }
+            { !list.length &&
+              <Text style={styles.noFoundListText}>
+                Su Búsqueda no coincide asegurese que no contenga errores
+              </Text>
+            }
           </List>
         }
         <Spinner
           visible={fetching}
-          color={colors.tintColor}
+          color={colors.darkGrey}
           overlayColor={colors.transparent}
         />
         { errorFetching &&
           <View style={styles.errorContainer}>
-            <Button
-              icon={iconReloadOptions}
-              backgroundColor={colors.transparent}
-              buttonStyle={styles.errorButton}
+            <TouchableHighlight
               onPress={handleErrorPress}
-            />
-            <Text style={styles.errorText}>
-              Recargar
-            </Text>
+              underlayColor={colors.white}
+              activeOpacity={0.7}
+            >
+              <View style={styles.errorIconContainer}>
+                <Icon
+                  name={'ios-refresh-outline'}
+                  size={48}
+                  color={colors.gray}
+                />
+                <Text style={styles.errorText}>
+                  Recargar
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         }
       </ScrollView>
@@ -121,6 +183,11 @@ PersonListView.propTypes = {
   successFetching: PropTypes.bool.isRequired,
   errorFetching: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
+  refreshingList: PropTypes.bool.isRequired,
+  onRefreshList: PropTypes.func.isRequired,
+  onSearchIosPersonList: PropTypes.func.isRequired,
+  errorRefreshing: PropTypes.bool.isRequired,
+  clearFilterPersonList: PropTypes.func.isRequired,
 }
 
 export default PersonListView

@@ -2,24 +2,36 @@ import { StyleSheet } from 'react-native'
 import Colors from '../constants/Colors'
 import Layout from '../constants/Layout'
 
-const height = Layout.window.height - 260
+const height = Layout.window.height - 200
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background,
+    backgroundColor: Colors.white,
   },
   search: {
     marginBottom: 10,
   },
+  toasterContainer: {
+    backgroundColor: Colors.gray,
+    height: 40,
+    margin: 0,
+    padding: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  toasterText: {
+    color: Colors.darkGray,
+  },
   inputStyle: {
-    backgroundColor: Colors.grey3,
+    backgroundColor: Colors.white,
   },
   list: {
     marginBottom: -2,
     marginTop: -1,
     borderTopWidth: 1,
-    borderBottomWidth: 1,
+    borderTopColor: Colors.background,
+    borderBottomWidth: 0,
   },
   errorContainer: {
     flex: 1,
@@ -28,8 +40,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  errorIconContainer: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   errorText: {
-    marginTop: 8,
     color: Colors.gray,
     fontSize: 17,
     fontWeight: 'normal',
@@ -39,10 +55,33 @@ const styles = StyleSheet.create({
     height: 40,
     width: 200,
   },
+  ListItemContent: {
+    flexDirection: 'row',
+  },
+  arrowRight: {
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    flex: 1,
+    paddingRight: 6,
+  },
+  descriptionLeft: {
+    flex: 7,
+  },
   userDistance: {
     marginLeft: 10,
     marginTop: 5,
     color: Colors.gray2,
+  },
+  avatarStyle: {
+    borderRadius: 34,
+    height: 68,
+    width: 68,
+    backgroundColor: Colors.gray5,
+  },
+  userTitle: {
+    marginLeft: 10,
+    color: Colors.grey7,
+    fontSize: 15,
   },
   addressContainer: {
     flexDirection: 'row',
@@ -56,10 +95,20 @@ const styles = StyleSheet.create({
   },
   userAddressIcon: {
     fontSize: 10,
+    marginTop: 2,
   },
   androidSearchBarContainer: {
     backgroundColor: Colors.searchHomeBackground,
     borderColor: Colors.searchHomeBackground,
+  },
+  noFoundListText: {
+    color: Colors.gray,
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 17,
+  },
+  andoidClearIcon: {
+    marginTop: 3,
   },
 })
 

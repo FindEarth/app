@@ -1,9 +1,9 @@
 import React from 'react'
+import { Platform } from 'react-native'
 import { Notifications } from 'expo'
 import { StackNavigation, TabNavigation, TabNavigationItem } from '@expo/ex-navigation'
-import { FontAwesome } from '@expo/vector-icons'
 import styles from '../styles/RootNavigation'
-
+import Icon from 'react-native-vector-icons/Ionicons'
 import Alerts from '../constants/Alerts'
 import Colors from '../constants/Colors'
 import registerForPushNotificationsAsync
@@ -11,11 +11,11 @@ import registerForPushNotificationsAsync
 
 export default class RootNavigation extends React.Component {
   componentDidMount() {
-    this._notificationSubscription = this._registerForPushNotifications()
+    //this._notificationSubscription = this._registerForPushNotifications()
   }
 
   componentWillUnmount() {
-    this._notificationSubscription && this._notificationSubscription.remove()
+    //this._notificationSubscription && this._notificationSubscription.remove()
   }
 
   render() {
@@ -26,21 +26,21 @@ export default class RootNavigation extends React.Component {
       >
         <TabNavigationItem
           id='PersonList'
-          renderIcon={isSelected => this._renderIcon('users', isSelected)}
+          renderIcon={isSelected => this._renderIcon('people', isSelected)}
         >
           <StackNavigation initialRoute='PersonList' />
         </TabNavigationItem>
 
         <TabNavigationItem
           id='PersonCreate'
-          renderIcon={isSelected => this._renderIcon('user-plus', isSelected)}
+          renderIcon={isSelected => this._renderIcon('person-add', isSelected)}
         >
           <StackNavigation initialRoute='PersonCreate' />
         </TabNavigationItem>
 
         <TabNavigationItem
           id='Config'
-          renderIcon={isSelected => this._renderIcon('cog', isSelected)}
+          renderIcon={isSelected => this._renderIcon('settings', isSelected)}
         >
           <StackNavigation initialRoute='Config' />
         </TabNavigationItem>
@@ -49,13 +49,17 @@ export default class RootNavigation extends React.Component {
   }
 
   _renderIcon(name, isSelected) {
-    return (
-      <FontAwesome
-        name={name}
-        size={19}
+    return Platform.OS === 'ios' ?
+      <Icon
+        name={isSelected ? `ios-${name}` : `ios-${name}-outline`}
+        size={32}
+        color={isSelected ? Colors.tabIconSelected : Colors.tabIconDefault}
+      /> :
+      <Icon
+        name={`md-${name}`}
+        size={32}
         color={isSelected ? Colors.tabIconSelected : Colors.tabIconDefault}
       />
-    )
   }
 
   _registerForPushNotifications() {
