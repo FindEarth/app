@@ -4,7 +4,12 @@ import Styles from '../styles/PersonCreate'
 import HeaderTitle from '../components/HeaderTitle'
 import PersonCreateView from '../components/PersonCreateView'
 
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as allActions from '../actions'
+
 class PersonCreate extends React.Component {
+
   static route = {
     navigationBar: {
       title: 'Nuevo',
@@ -25,4 +30,20 @@ class PersonCreate extends React.Component {
   }
 }
 
-export default PersonCreate
+function mapStateToProps (state) {
+  return {
+    state: state,
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  const actions = bindActionCreators(allActions, dispatch)
+  return {
+    actions: actions,
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PersonCreate)

@@ -6,6 +6,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.white,
     paddingTop: 15,
+    paddingRight: 20,
+    paddingLeft: 20,
+  },
+  form: {
+    padding: 15,
+  },
+  sendButton: {
+    marginBottom: 30,
+    marginTop: 15,
   },
 })
 

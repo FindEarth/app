@@ -90,14 +90,18 @@ function PersonDetailView({
       </View>
       <View style={styles.mapContainer}>
         <Text style={styles.titleName}>
-          {`${person.name} se perdió el ${format(person.lastSeenAt, 'MM/DD/YYYY')}` +
+          {`${person.name} se perdió el ${format(person.lastSeenAt, 'DD/MM/YYYY, h:mm a')}` +
           ` en ${person.geo.address}`}
         </Text>
         <MapView
           style={styles.map}
           initialRegion={geoMap}
         >
-          <MapView.Marker coordinate={geoMap} />
+          <MapView.Marker
+            coordinate={geoMap}
+            description={person.geo.address}
+            title={'Dirección'}
+          />
           <MapView.Circle
             center={geoMap}
             radius={1000}
