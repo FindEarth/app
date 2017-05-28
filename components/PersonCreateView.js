@@ -7,7 +7,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import t from 'tcomb-form-native'
 import dateFormat from 'date-fns/format'
 import { email } from '../constants/Regex'
-import { ScrollView } from 'react-native'
+import { Text } from 'react-native'
 
 const emailRegex = new RegExp(email)
 const Form = t.form.Form
@@ -22,10 +22,10 @@ const Person = t.struct({
   name: t.String,
   age: Age,
   gender: Gender,
+  lastSeenAt: t.Date,
   clothing: t.maybe(t.String),
   appearance: t.maybe(t.String),
   more: t.maybe(t.String),
-  lastSeenAt: t.Date,
 })
 const options = {
   auto: 'none',
@@ -90,7 +90,7 @@ const options = {
       autoCapitalize: 'none',
     },
     lastSeenAt: {
-      label: 'Ultima vez visto',
+      label: 'Fecha última vez visto',
       config: {
         format: (date) => dateFormat(date, 'DD/MM/YYYY, h:mm a'),
       },
@@ -147,10 +147,12 @@ class PersonCreateView extends React.PureComponent {
       console.log({...formValues, geo})
       this.clearForm()
     }
-    this.setState({
-      ...this.state,
-      geoError: true,
-    })
+    if (!geo) {
+      this.setState({
+        ...this.state,
+        geoError: true,
+      })
+    }
   }
 
   getgeo = (location) => {
@@ -196,7 +198,16 @@ class PersonCreateView extends React.PureComponent {
           value={this.state.formValues}
           onChange={this.onChange}
         />
-
+        <Text style={{
+          fontSize: 17,
+          marginBottom: 8,
+          fontWeight: '500',
+          marginTop: 3,
+          color: this.state.geoError ? Colors.darkRed : 'black',
+        }}
+        >
+          Dirección última vez visto
+        </Text>
         <GooglePlacesAutocomplete
           placeholder={'Dirección ultima vez visto'}
           minLength={2}
@@ -214,7 +225,7 @@ class PersonCreateView extends React.PureComponent {
               borderWidth: 1,
               borderColor: this.state.geoError ? Colors.darkRed : Colors.grey4,
               borderRadius: 4,
-              marginBottom: 20,
+              marginBottom: 15,
             },
             textInputContainer: {
               backgroundColor: Colors.white,
