@@ -138,6 +138,7 @@ class PersonCreateView extends React.PureComponent {
       geo: null,
       geoError: false,
     })
+    this.GooglePlacesRef.clearInput()
   }
 
   handleSubmit = () => {
@@ -209,6 +210,7 @@ class PersonCreateView extends React.PureComponent {
           Dirección última vez visto
         </Text>
         <GooglePlacesAutocomplete
+          ref={(instance) => { this.GooglePlacesRef = instance }}
           placeholder={'Dirección ultima vez visto'}
           minLength={2}
           autoFocus={false}
