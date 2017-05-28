@@ -3,15 +3,17 @@ import PropTypes from 'prop-types'
 import { Button } from 'react-native-elements'
 import Colors from './../constants/Colors'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import t from 'tcomb-form-native'
 import dateFormat from 'date-fns/format'
 import { email } from '../constants/Regex'
+import { ScrollView } from 'react-native'
 
 const emailRegex = new RegExp(email)
 const Form = t.form.Form
 const Gender = t.refinement(t.String, (str) => str === 'M' || str === 'F')
 const Age = t.refinement(t.Number, (num) => (num <= 120))
-const Email = t.refinement(t.Number, (str) => emailRegex.test(str))
+const Email = t.refinement(t.String, (str) => emailRegex.test(str))
 
 const Person = t.struct({
   contactName: t.String,
@@ -98,31 +100,90 @@ const options = {
   },
 }
 
+const queryMap = {
+  key: 'AIzaSyBFDFmn-PL1Kg0frwZUXibuFyuiTPDMsas',
+  language: 'en',
+}
+const geocodingByTypes = [
+  'locality',
+  'administrative_area_level_3',
+]
+
 class PersonCreateView extends React.PureComponent {
+
+  constructor () {
+    super()
+    this.state = {
+      formValues: null,
+      geo: null,
+      geoError: false,
+    }
+  }
 
   static propTypes = {
     styles: PropTypes.object.isRequired,
   }
 
-  state = {
-    value: null,
-  }
-
-  onChange = (value) => {
-    this.setState({ value })
+  onChange = (formValues) => {
+    this.setState({
+      ...this.state,
+      formValues })
   }
 
   clearForm = () => {
     // clear content from all textbox
-    this.setState({ value: null })
+    this.setState({
+      ...this.state,
+      formValues: null,
+      geo: null,
+      geoError: false,
+    })
   }
 
   handleSubmit = () => {
-    let value = this.refs.form.getValue()
-    if (value) {           // if validation fails, value will be null
-      console.log(value)  // value here is an instance of Person
-      this.clearForm()    // clear all fields after submit
+    let geo = this.state.geo
+    let formValues = this.refs.form.getValue()
+    if (formValues && geo) {
+      console.log({...formValues, geo})
+      this.clearForm()
     }
+    this.setState({
+      ...this.state,
+      geoError: true,
+    })
+  }
+
+  getgeo = (location) => {
+    let vicinity = location.vicinity
+    let address = location.name
+    let loc = [
+      location.geometry.location.lng,
+      location.geometry.location.lat,
+    ]
+    let countryObj = location.address_components.find(
+      (item) => item.types[0] === 'country'
+    )
+    let country = countryObj.long_name
+    let countryCode = countryObj.short_name
+    let administrativeLvl1 = location.address_components.find(
+      (item) => item.types[0] === 'administrative_area_level_1'
+    )
+    let administrativeLvl2 = location.address_components.find(
+      (item) => item.types[0] === 'administrative_area_level_2'
+    )
+    let city = `${administrativeLvl2.long_name}, ${administrativeLvl1.long_name}`
+    let geo = {
+      vicinity,
+      address,
+      loc,
+      country,
+      city,
+      countryCode,
+    }
+    this.setState({
+      ...this.state,
+      geo,
+    })
   }
 
   render() {
@@ -132,9 +193,50 @@ class PersonCreateView extends React.PureComponent {
           type={Person}
           options={options}
           ref='form'
-          value={this.state.value}
+          value={this.state.formValues}
           onChange={this.onChange}
         />
+
+        <GooglePlacesAutocomplete
+          placeholder={'Dirección ultima vez visto'}
+          minLength={2}
+          autoFocus={false}
+          listViewDisplayed={'auto'}
+          fetchDetails={true}
+          renderDescription={(row) => row.description}
+          onPress={(data, details = null) => this.getgeo(details, data)}
+          query={queryMap}
+          nearbyPlacesAPI={'GooglePlacesSearch'}
+          filterReverseGeocodingByTypes={geocodingByTypes}
+          debounce={200}
+          styles={{
+            container: {
+              borderWidth: 1,
+              borderColor: this.state.geoError ? Colors.darkRed : Colors.grey4,
+              borderRadius: 4,
+              marginBottom: 20,
+            },
+            textInputContainer: {
+              backgroundColor: Colors.white,
+              borderTopWidth: 0,
+              borderBottomWidth: 0,
+              borderColor: Colors.white,
+              borderRadius: 4,
+              borderTopColor: Colors.white,
+              borderBottomColor: Colors.white,
+              height: 36,
+            },
+            textInput: {
+              borderWidth: 0,
+              borderColor: Colors.white,
+              borderRadius: 4,
+              fontSize: 17,
+              marginTop: 4,
+              marginLeft: 0,
+            }}
+          }
+        />
+
         <Button
           raised
           title='Enviar'
