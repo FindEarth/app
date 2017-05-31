@@ -7,7 +7,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import t from 'tcomb-form-native'
 import dateFormat from 'date-fns/format'
 import { email } from '../constants/Regex'
-import { Text, StyleSheet } from 'react-native'
+import { Text, StyleSheet, View } from 'react-native'
 import Toaster from 'react-native-toaster'
 import styles from '../styles/PersonCreate'
 import Spinner from 'react-native-loading-spinner-overlay'
@@ -223,86 +223,88 @@ class PersonCreateView extends React.PureComponent {
 
   render() {
     return (
-      <KeyboardAwareScrollView style={this.props.styles.container}>
+      <View style={this.props.styles.container2}>
         { this.props.errorCreatingPerson &&
           <Toaster message={errorToasterOpt} duration={5500} />
         }
         { this.props.successCreatingPerson &&
           <Toaster message={successToasterOpt} duration={5500} />
         }
-        <Spinner
-          visible={this.props.creatingPerson}
-          color={colors.darkGrey}
-          overlayColor={colors.transparent}
-        />
-        <Form
-          type={Person}
-          options={options}
-          ref='form'
-          value={this.state.formValues}
-          onChange={this.onChange}
-        />
-        <Text style={{
-          fontSize: 17,
-          marginBottom: 8,
-          fontWeight: '500',
-          marginTop: 3,
-          color: this.state.geoError ? Colors.darkRed : 'black',
-        }}
-        >
-          Dirección última vez visto
-        </Text>
-        <GooglePlacesAutocomplete
-          ref={(instance) => { this.GooglePlacesRef = instance }}
-          placeholder={'Dirección ultima vez visto'}
-          minLength={2}
-          autoFocus={false}
-          listViewDisplayed={'auto'}
-          fetchDetails={true}
-          renderDescription={(row) => row.description}
-          onPress={(data, details = null) => this.getGeo(details, data)}
-          query={queryMap}
-          nearbyPlacesAPI={'GooglePlacesSearch'}
-          filterReverseGeocodingByTypes={geocodingByTypes}
-          debounce={200}
-          styles={{
-            container: {
-              borderWidth: 1,
-              borderColor: this.state.geoError ? Colors.darkRed : Colors.grey4,
-              borderRadius: 4,
-              marginBottom: 15,
-            },
-            textInputContainer: {
-              backgroundColor: Colors.white,
-              borderTopWidth: 0,
-              borderBottomWidth: 0,
-              borderColor: Colors.white,
-              borderRadius: 4,
-              borderTopColor: Colors.white,
-              borderBottomColor: Colors.white,
-              height: 36,
-            },
-            textInput: {
-              borderWidth: 0,
-              borderColor: Colors.white,
-              borderRadius: 4,
-              fontSize: 17,
-              marginTop: 4,
-              marginLeft: 0,
-            }}
-          }
-        />
+        <KeyboardAwareScrollView style={this.props.styles.container}>
+          <Spinner
+            visible={this.props.creatingPerson}
+            color={colors.darkGrey}
+            overlayColor={colors.transparent}
+          />
+          <Form
+            type={Person}
+            options={options}
+            ref='form'
+            value={this.state.formValues}
+            onChange={this.onChange}
+          />
+          <Text style={{
+            fontSize: 17,
+            marginBottom: 8,
+            fontWeight: '500',
+            marginTop: 3,
+            color: this.state.geoError ? Colors.darkRed : 'black',
+          }}
+          >
+            Dirección última vez visto
+          </Text>
+          <GooglePlacesAutocomplete
+            ref={(instance) => { this.GooglePlacesRef = instance }}
+            placeholder={'Dirección ultima vez visto'}
+            minLength={2}
+            autoFocus={false}
+            listViewDisplayed={'auto'}
+            fetchDetails={true}
+            renderDescription={(row) => row.description}
+            onPress={(data, details = null) => this.getGeo(details, data)}
+            query={queryMap}
+            nearbyPlacesAPI={'GooglePlacesSearch'}
+            filterReverseGeocodingByTypes={geocodingByTypes}
+            debounce={200}
+            styles={{
+              container: {
+                borderWidth: 1,
+                borderColor: this.state.geoError ? Colors.darkRed : Colors.grey4,
+                borderRadius: 4,
+                marginBottom: 15,
+              },
+              textInputContainer: {
+                backgroundColor: Colors.white,
+                borderTopWidth: 0,
+                borderBottomWidth: 0,
+                borderColor: Colors.white,
+                borderRadius: 4,
+                borderTopColor: Colors.white,
+                borderBottomColor: Colors.white,
+                height: 36,
+              },
+              textInput: {
+                borderWidth: 0,
+                borderColor: Colors.white,
+                borderRadius: 4,
+                fontSize: 17,
+                marginTop: 4,
+                marginLeft: 0,
+              }}
+            }
+          />
 
-        <Button
-          raised
-          title={this.props.creatingPerson ? 'Enviando...' : 'Enviar'}
-          backgroundColor={Colors.tintColor}
-          color={Colors.white}
-          containerViewStyle={this.props.styles.sendButton}
-          onPress={this.handleSubmit}
-          disabled={this.props.creatingPerson}
-        />
-      </KeyboardAwareScrollView>
+          <Button
+            raised
+            title={this.props.creatingPerson ? 'Enviando...' : 'Enviar'}
+            backgroundColor={Colors.tintColor}
+            color={Colors.white}
+            containerViewStyle={this.props.styles.sendButton}
+            onPress={this.handleSubmit}
+            disabled={this.props.creatingPerson}
+          />
+        </KeyboardAwareScrollView>
+      </View>
     )
   }
 }

@@ -9,6 +9,9 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     paddingLeft: 20,
   },
+  container2: {
+    flex: 1,
+  },
   form: {
     padding: 15,
   },
