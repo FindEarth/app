@@ -7,7 +7,11 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import t from 'tcomb-form-native'
 import dateFormat from 'date-fns/format'
 import { email } from '../constants/Regex'
-import { Text } from 'react-native'
+import { Text, StyleSheet } from 'react-native'
+import Toaster from 'react-native-toaster'
+import styles from '../styles/PersonCreate'
+import Spinner from 'react-native-loading-spinner-overlay'
+import colors from '../constants/Colors'
 
 const emailRegex = new RegExp(email)
 const Form = t.form.Form
@@ -109,6 +113,29 @@ const geocodingByTypes = [
   'administrative_area_level_3',
 ]
 
+const errorToasterOpt = {
+  text: 'Error de conección intente de nuevo',
+  styles: {
+    text: styles.toasterText,
+    container: StyleSheet.flatten([
+      styles.toasterContainer, {
+        backgroundColor: Colors.errorBackground,
+      },
+    ]),
+  },
+}
+const successToasterOpt = {
+  text: 'Solicitud enviada correctamente',
+  styles: {
+    text: styles.toasterText,
+    container: StyleSheet.flatten([
+      styles.toasterContainer, {
+        backgroundColor: Colors.successBackground,
+      },
+    ]),
+  },
+}
+
 class PersonCreateView extends React.PureComponent {
 
   constructor () {
@@ -122,6 +149,10 @@ class PersonCreateView extends React.PureComponent {
 
   static propTypes = {
     styles: PropTypes.object.isRequired,
+    createPerson: PropTypes.func.isRequired,
+    creatingPerson: PropTypes.bool.isRequired,
+    errorCreatingPerson: PropTypes.bool.isRequired,
+    successCreatingPerson: PropTypes.bool.isRequired,
   }
 
   onChange = (formValues) => {
@@ -145,7 +176,8 @@ class PersonCreateView extends React.PureComponent {
     let geo = this.state.geo
     let formValues = this.refs.form.getValue()
     if (formValues && geo) {
-      console.log({...formValues, geo})
+      let payload = {...this.state.formValues, geo: this.state.geo}
+      this.props.createPerson(payload)
       this.clearForm()
     }
     if (!geo) {
@@ -156,7 +188,7 @@ class PersonCreateView extends React.PureComponent {
     }
   }
 
-  getgeo = (location) => {
+  getGeo = (location) => {
     let vicinity = location.vicinity
     let address = location.name
     let loc = [
@@ -192,6 +224,17 @@ class PersonCreateView extends React.PureComponent {
   render() {
     return (
       <KeyboardAwareScrollView style={this.props.styles.container}>
+        { this.props.errorCreatingPerson &&
+          <Toaster message={errorToasterOpt} duration={5500} />
+        }
+        { this.props.successCreatingPerson &&
+          <Toaster message={successToasterOpt} duration={5500} />
+        }
+        <Spinner
+          visible={this.props.creatingPerson}
+          color={colors.darkGrey}
+          overlayColor={colors.transparent}
+        />
         <Form
           type={Person}
           options={options}
@@ -217,7 +260,7 @@ class PersonCreateView extends React.PureComponent {
           listViewDisplayed={'auto'}
           fetchDetails={true}
           renderDescription={(row) => row.description}
-          onPress={(data, details = null) => this.getgeo(details, data)}
+          onPress={(data, details = null) => this.getGeo(details, data)}
           query={queryMap}
           nearbyPlacesAPI={'GooglePlacesSearch'}
           filterReverseGeocodingByTypes={geocodingByTypes}
@@ -252,11 +295,12 @@ class PersonCreateView extends React.PureComponent {
 
         <Button
           raised
-          title='Enviar'
+          title={this.props.creatingPerson ? 'Enviando...' : 'Enviar'}
           backgroundColor={Colors.tintColor}
           color={Colors.white}
           containerViewStyle={this.props.styles.sendButton}
           onPress={this.handleSubmit}
+          disabled={this.props.creatingPerson}
         />
       </KeyboardAwareScrollView>
     )

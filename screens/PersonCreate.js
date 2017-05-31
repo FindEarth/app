@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Colors from '../constants/Colors'
 import Styles from '../styles/PersonCreate'
 import HeaderTitle from '../components/HeaderTitle'
@@ -9,6 +10,13 @@ import { connect } from 'react-redux'
 import * as allActions from '../actions'
 
 class PersonCreate extends React.Component {
+
+  static propTypes = {
+    createPerson: PropTypes.func.isRequired,
+    creatingPerson: PropTypes.bool.isRequired,
+    errorCreatingPerson: PropTypes.bool.isRequired,
+    successCreatingPerson: PropTypes.bool.isRequired,
+  }
 
   static route = {
     navigationBar: {
@@ -21,10 +29,18 @@ class PersonCreate extends React.Component {
     },
   }
 
+  createPerson = (person) => {
+    this.props.createPerson(person)
+  }
+
   render() {
     return (
       <PersonCreateView
         styles={Styles}
+        creatingPerson={this.props.creatingPerson}
+        errorCreatingPerson={this.props.errorCreatingPerson}
+        successCreatingPerson={this.props.successCreatingPerson}
+        createPerson={this.createPerson}
       />
     )
   }
@@ -32,14 +48,16 @@ class PersonCreate extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    state: state,
+    creatingPerson: state.personCreate.creatingPerson,
+    errorCreatingPerson: state.personCreate.errorCreatingPerson,
+    successCreatingPerson: state.personCreate.successCreatingPerson,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   const actions = bindActionCreators(allActions, dispatch)
   return {
-    actions: actions,
+    createPerson: actions.createPerson,
   }
 }
 
