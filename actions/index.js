@@ -12,6 +12,9 @@ import {
   REFRESHING_PERSON_DETAIL,
   SUCCESS_REFRESHING_PERSON,
   ERROR_REFRESHING_PERSON,
+  CREATING_NEW_PERSON,
+  SUCCESS_CREATING_NEW_PERSON,
+  ERROR_CREATING_NEW_PERSON,
 } from '../constants/ActionTypes'
 import { createAction } from 'redux-actions'
 import Api from '../constants/Api'
@@ -31,9 +34,13 @@ export const refreshingPersonDetail = createAction(REFRESHING_PERSON_DETAIL)
 export const successRefreshingPerson = createAction(SUCCESS_REFRESHING_PERSON)
 export const errorRefreshingPerson = createAction(ERROR_REFRESHING_PERSON)
 
+export const creatingNewPerson = createAction(CREATING_NEW_PERSON)
+export const successCreatingNewPerson = createAction(SUCCESS_CREATING_NEW_PERSON)
+export const errorCreatingNewPerson = createAction(ERROR_CREATING_NEW_PERSON)
+
 export function fetchPersonList(pos) {
   return function(dispatch) {
-    const base = `${Api.baseUrl}${Api.personEndpoint}`
+    const base = `${Api.endpoints.baseUrl}${Api.endpoints.person}`
     const url = pos ?
       `${base}/near/${pos.long}/${pos.lat}?radius=${Api.radius}` : base
     dispatch(fetchingPersonList())
@@ -50,7 +57,7 @@ export function fetchPersonList(pos) {
 
 export function refreshPersonList(pos) {
   return function(dispatch) {
-    const base = `${Api.baseUrl}${Api.personEndpoint}`
+    const base = `${Api.endpoints.baseUrl}${Api.endpoints.person}`
     const url = pos ?
       `${base}/near/${pos.long}/${pos.lat}?radius=${Api.radius}` : base
     dispatch(refreshingPersonList())
@@ -77,7 +84,7 @@ export function onSearchPersonList(str) {
 export function refreshPersonDetail(id) {
   return function(dispatch, getState) {
     const id = getState().personDetail.personSelected._id
-    const base = `${Api.baseUrl}${Api.personEndpoint}`
+    const base = `${Api.endpoints.baseUrl}${Api.endpoints.person}`
     const url = `${base}/${id}`
     dispatch(refreshingPersonDetail())
     fetch(url)
@@ -87,6 +94,30 @@ export function refreshPersonDetail(id) {
       .catch(err => {
         dispatch(errorRefreshingPerson(err.message))
         console.log('Error refreshing Person detail', err.message)
+      })
+  }
+}
+
+export function createPerson(person) {
+  return function(dispatch, getState) {
+    const url = `${Api.endpoints.baseUrl}${Api.endpoints.personRequest}`
+    dispatch(creatingNewPerson())
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...person,
+      }),
+    })
+      .then(res => res.json().then(json => {
+        dispatch(successCreatingNewPerson())
+      }))
+      .catch(err => {
+        dispatch(errorCreatingNewPerson())
+        console.log('Error creating New Person', err.message)
       })
   }
 }

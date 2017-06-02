@@ -3229,6 +3229,10 @@ lodash.cond@^4.3.0:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/lodash.cond/-/lodash.cond-4.5.2.tgz#f471a1da486be60f6ab955d17115523dd1d255d5"
 
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+
 lodash.escape@^3.0.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/lodash.escape/-/lodash.escape-3.2.0.tgz#995ee0dc18c1b48cc92effae71a10aab5b487698"
@@ -3843,6 +3847,10 @@ qs@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-4.0.0.tgz#c31d9b74ec27df75e543a86c78728ed8d4623607"
 
+qs@^5.2.0:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-5.2.1.tgz#801fee030e0b9450d6385adc48a4cc55b44aedfc"
+
 qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
@@ -3924,6 +3932,19 @@ react-native-elements@^0.12.1:
 react-native-fit-image@^1.4.8:
   version "1.4.8"
   resolved "https://registry.yarnpkg.com/react-native-fit-image/-/react-native-fit-image-1.4.8.tgz#b2f6e2f921768bd0e3e718c45333db0bef9b505a"
+
+"react-native-google-places-autocomplete@github:FindEarth/react-native-google-places-autocomplete":
+  version "1.2.12"
+  resolved "https://codeload.github.com/FindEarth/react-native-google-places-autocomplete/tar.gz/71d1babb781f1b942b691f741a04ffab750635b7"
+  dependencies:
+    lodash.debounce "^4.0.8"
+    qs "^5.2.0"
+
+react-native-keyboard-aware-scroll-view@^0.2.9:
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.2.9.tgz#2a1ae49cfae90a9665b21763c1f8bd03ed5fb92c"
+  dependencies:
+    react-timer-mixin "^0.13.3"
 
 react-native-loading-spinner-overlay@^0.4.4:
   version "0.4.4"
@@ -4716,6 +4737,22 @@ table@^3.7.8:
     lodash "^4.0.0"
     slice-ansi "0.0.4"
     string-width "^2.0.0"
+
+tcomb-form-native@^0.6.8:
+  version "0.6.8"
+  resolved "https://registry.yarnpkg.com/tcomb-form-native/-/tcomb-form-native-0.6.8.tgz#fccdd117d2712c338f6c3aae943690ec7357f061"
+  dependencies:
+    tcomb-validation "^3.0.0"
+
+tcomb-validation@^3.0.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/tcomb-validation/-/tcomb-validation-3.3.0.tgz#29ada8534203500e90b245eedd0e1a80f1909ba2"
+  dependencies:
+    tcomb "^3.0.0"
+
+tcomb@^3.0.0:
+  version "3.2.20"
+  resolved "https://registry.yarnpkg.com/tcomb/-/tcomb-3.2.20.tgz#823e689dcf3518d82c4b6c890a822aa6916692cd"
 
 temp@0.8.3:
   version "0.8.3"
