@@ -4,7 +4,7 @@ import Styles from '../styles/Config'
 import HeaderTitle from '../components/HeaderTitle'
 import ConfigView from '../components/ConfigView'
 
-class Config extends React.Component {
+class Config extends React.PureComponent {
   static route = {
     navigationBar: {
       title: 'Opciones',

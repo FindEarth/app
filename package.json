@@ -31,6 +31,7 @@
     "react-native-toaster": "^1.1.0",
     "react-native-vector-icons": "^4.1.1",
     "react-redux": "^5.0.4",
+    "recompose": "^0.23.4",
     "redux": "^3.6.0",
     "redux-actions": "^2.0.1",
     "redux-thunk": "^2.2.0",
