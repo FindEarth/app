@@ -16,19 +16,30 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   sendButton: {
-    marginBottom: 30,
+    marginBottom: 25,
     marginTop: 15,
   },
-  toasterContainer: {
-    backgroundColor: Colors.gray,
-    height: 30,
-    margin: 0,
-    padding: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
+  geoTextError: {
+    fontSize: 14,
+    marginTop: -8,
+    marginBottom: 10,
+    color: Colors.darkRed,
   },
-  toasterText: {
-    color: Colors.darkGray,
+  alertContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderBottomColor: Colors.white,
+  },
+  successText: {
+    color: Colors.darkRed,
+    margin:  10,
+    fontSize: 16,
+  },
+  errorText: {
+    textAlign: 'center',
+    color: Colors.successBackground,
+    margin:  10,
   },
 })
 

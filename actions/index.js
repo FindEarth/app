@@ -15,6 +15,7 @@ import {
   CREATING_NEW_PERSON,
   SUCCESS_CREATING_NEW_PERSON,
   ERROR_CREATING_NEW_PERSON,
+  CLEAN_PERSON_CREATE_RESPONSE,
 } from '../constants/ActionTypes'
 import { createAction } from 'redux-actions'
 import Api from '../constants/Api'
@@ -37,6 +38,7 @@ export const errorRefreshingPerson = createAction(ERROR_REFRESHING_PERSON)
 export const creatingNewPerson = createAction(CREATING_NEW_PERSON)
 export const successCreatingNewPerson = createAction(SUCCESS_CREATING_NEW_PERSON)
 export const errorCreatingNewPerson = createAction(ERROR_CREATING_NEW_PERSON)
+export const cleanPersonCreateResponse = createAction(CLEAN_PERSON_CREATE_RESPONSE)
 
 export function fetchPersonList(pos) {
   return function(dispatch) {

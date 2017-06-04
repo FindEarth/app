@@ -2,6 +2,7 @@ import {
   CREATING_NEW_PERSON,
   SUCCESS_CREATING_NEW_PERSON,
   ERROR_CREATING_NEW_PERSON,
+  CLEAN_PERSON_CREATE_RESPONSE,
 } from '../constants/ActionTypes'
 
 const initialState = {
@@ -34,6 +35,13 @@ export default function personCreat(state = initialState, action) {
         ...state,
         errorCreatingPerson: true,
         creatingPerson: false,
+        successCreatingPerson: false,
+      }
+
+    case CLEAN_PERSON_CREATE_RESPONSE:
+      return {
+        ...state,
+        errorCreatingPerson: false,
         successCreatingPerson: false,
       }
 

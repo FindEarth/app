@@ -6,7 +6,7 @@ export default {
   tabIconSelected:                      'rgba(41, 35, 92, .85)',
   tabBar:                               '#fefefe',
   errorBackground:                      '#e25a36',
-  successBackground:                    '#1ae979',
+  successBackground:                    '#1bb461',
   darkRed:                              '#a20737',
   errorText:                            '#fff',
   warningBackground:                    '#EAEB5E',

@@ -13,6 +13,7 @@ class PersonCreate extends React.Component {
 
   static propTypes = {
     createPerson: PropTypes.func.isRequired,
+    cleanPersonCreateResponse: PropTypes.func.isRequired,
     creatingPerson: PropTypes.bool.isRequired,
     errorCreatingPerson: PropTypes.bool.isRequired,
     successCreatingPerson: PropTypes.bool.isRequired,
@@ -33,6 +34,10 @@ class PersonCreate extends React.Component {
     this.props.createPerson(person)
   }
 
+  cleanPersonCreateResponse = () => {
+    this.props.cleanPersonCreateResponse()
+  }
+
   render() {
     return (
       <PersonCreateView
@@ -41,6 +46,7 @@ class PersonCreate extends React.Component {
         errorCreatingPerson={this.props.errorCreatingPerson}
         successCreatingPerson={this.props.successCreatingPerson}
         createPerson={this.createPerson}
+        cleanPersonCreateResponse={this.cleanPersonCreateResponse}
       />
     )
   }
@@ -58,6 +64,7 @@ function mapDispatchToProps (dispatch) {
   const actions = bindActionCreators(allActions, dispatch)
   return {
     createPerson: actions.createPerson,
+    cleanPersonCreateResponse: actions.cleanPersonCreateResponse,
   }
 }
 

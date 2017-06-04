@@ -20,6 +20,12 @@ function ConfigView({styles}) {
       <Text style={styles.row2}>Argentina</Text>
       <Text style={styles.row1}>Solicitar Información</Text>
       <Text style={styles.row2}>hi@keepe.rs</Text>
+      <Text style={styles.row1}>Que es</Text>
+      <Text style={styles.row2}>Es una plataforma open source, que tiene como
+        objetivo facilitar el reporte de personas perdidas, agilizar
+        la viralización de sus datos en redes sociales y lo más
+        importante: ayudar a encontrarlas.
+      </Text>
     </View>
   )
 }
