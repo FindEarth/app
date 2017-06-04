@@ -13,6 +13,7 @@ import Swiper from 'react-native-swiper'
 import Colors from '../constants/Colors'
 import colors from '../constants/Colors'
 import Toaster from 'react-native-toaster'
+import pure from 'recompose/pure'
 
 const uriImage = (url) => ({ uri: url })
 const requireImage = (gender) => gender === 'M'
@@ -128,4 +129,4 @@ PersonDetailView.propTypes = {
   onRefreshPerson: PropTypes.func.isRequired,
 }
 
-export default PersonDetailView
+export default pure(PersonDetailView)

@@ -13,6 +13,7 @@ import Search from 'react-native-search-box'
 import Spinner from 'react-native-loading-spinner-overlay'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Toaster from 'react-native-toaster'
+import pure from 'recompose/pure'
 
 function userImg(user) {
   const noImgReplace = user.gender === 'M'
@@ -190,4 +191,4 @@ PersonListView.propTypes = {
   clearFilterPersonList: PropTypes.func.isRequired,
 }
 
-export default PersonListView
+export default pure(PersonListView)

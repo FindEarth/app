@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
 import PropTypes from 'prop-types'
+import pure from 'recompose/pure'
 
 function ConfigView({styles}) {
   return (
@@ -34,4 +35,4 @@ ConfigView.propTypes = {
   styles: PropTypes.object.isRequired,
 }
 
-export default ConfigView
+export default pure(ConfigView)

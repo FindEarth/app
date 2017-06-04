@@ -11,6 +11,7 @@ import Styles from '../styles/HeaderTitle'
 import logo from '../assets/icons/app-icon.png'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Colors from '../constants/Colors'
+import pure from 'recompose/pure'
 
 function HeaderTitle({title, showLogo, rightIcon}) {
   return (
@@ -43,4 +44,4 @@ HeaderTitle.propTypes = {
   rightIcon: PropTypes.object,
 }
 
-export default HeaderTitle
+export default pure(HeaderTitle)
