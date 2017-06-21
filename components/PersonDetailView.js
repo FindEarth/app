@@ -112,9 +112,9 @@ function PersonDetailView({
       </View>
       { person.description &&
         <Text style={styles.titleName}>
-          {person.description.clothing && `Vestimenta: ${person.description.clothing}. `}
-          {person.description.appearance && `Apariencia: ${person.description.appearance}. `}
-          {person.description.more && `Mas: ${person.description.more}.`}
+          {person.description.clothing && `Vestimenta: ${person.description.clothing} `}
+          {person.description.appearance && `Apariencia: ${person.description.appearance} `}
+          {person.description.more && `Mas: ${person.description.more}`}
         </Text>
       }
     </ScrollView>
