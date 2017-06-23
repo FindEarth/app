@@ -1,13 +1,14 @@
 import React from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text } from 'react-native'
 import PropTypes from 'prop-types'
+import FitImage from 'react-native-fit-image'
 import pure from 'recompose/pure'
 
 function ConfigView({styles}) {
   return (
     <View style={styles.container} >
       <View style={styles.logoContainer}>
-        <Image
+        <FitImage
           source={require('../assets/icons/app-icon.png')}
           style={styles.logo}
         />
@@ -25,7 +26,7 @@ function ConfigView({styles}) {
       <Text style={styles.row2}>Es una plataforma open source, que tiene como
         objetivo facilitar el reporte de personas perdidas, agilizar
         la viralización de sus datos en redes sociales y lo más
-        importante: ayudar a encontrarlas.
+        importante, ayudar a encontrarlas.
       </Text>
     </View>
   )

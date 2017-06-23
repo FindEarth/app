@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     padding: 10,
     color: Colors.gray2,
     fontSize: 15,
+    lineHeight: 25,
   },
 })
 

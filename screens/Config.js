@@ -7,11 +7,11 @@ import ConfigView from '../components/ConfigView'
 class Config extends React.PureComponent {
   static route = {
     navigationBar: {
-      title: 'Opciones',
+      title: 'Información',
       backgroundColor: Colors.white,
       borderBottomWidth: 1,
       renderTitle: () => (
-        <HeaderTitle title={'Opciones'} />
+        <HeaderTitle title={'Información'} />
       ),
     },
   }

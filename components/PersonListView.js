@@ -13,14 +13,13 @@ import Search from 'react-native-search-box'
 import Spinner from 'react-native-loading-spinner-overlay'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Toaster from 'react-native-toaster'
+import FitImage from 'react-native-fit-image'
 import pure from 'recompose/pure'
 
-function userImg(user) {
-  const noImgReplace = user.gender === 'M'
-    ? require('../assets/images/userM.png')
-    : require('../assets/images/userF.png')
-  return user.photos.length > 0 ? user.photos[0].url : noImgReplace
-}
+const uriImage = (url) => ({ uri: url })
+const requireImage = (gender) => gender === 'M'
+  ? require('../assets/images/userM.png')
+  : require('../assets/images/userF.png')
 
 function searchBar(styles, onSearchIosPersonList, clearFilterPersonList) {
   const andoidClearIcon = {
@@ -100,13 +99,17 @@ function PersonListView({
             {
               list.map((user, i) => (
                 <ListItem
-                  roundAvatar
-                  avatar={userImg(user)}
-                  avatarStyle={styles.avatarStyle}
                   key={i}
                   hideChevron
                   subtitle={
                     <View style={styles.ListItemContent}>
+                      <View>
+                        <FitImage
+                          source={ !!user.photos.length ?
+                            uriImage(user.photos[0].url) : requireImage(user.gender)}
+                          style={styles.avatarStyle}
+                        />
+                      </View>
                       <View style={styles.descriptionLeft}>
                         <Text style={styles.userTitle}>
                           {user.name}
