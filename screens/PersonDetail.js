@@ -81,7 +81,7 @@ class PersonDetail extends React.Component {
     if (person) {
       this.props.route.params.person.name = person.name
       shareOptions.name = person.name
-      shareOptions.url = `https://find.earth/person/${person._id}`
+      shareOptions.url = `https://find.earth/person/${person._slug}`
     }
   }
 
