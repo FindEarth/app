@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.grey3,
     paddingTop: 15,
-    paddingBottom: 15,
   },
   pagination: {
     color: Colors.tabIconSelected,
@@ -32,14 +31,15 @@ const styles = StyleSheet.create({
     borderColor: Colors.grey6,
   },
   map: {
-    height: 257,
-    marginRight: 15,
-    marginLeft: 15,
+    height: 260,
   },
   titleName: {
-    padding: 10,
-    textAlign: 'center',
+    padding: 15,
     color: Colors.darkGrey,
+    fontSize: 16,
+    textAlign: 'center',
+    backgroundColor: Colors.grey3,
+    fontWeight: '500',
   },
   toasterContainer: {
     backgroundColor: Colors.gray,

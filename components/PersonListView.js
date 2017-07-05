@@ -80,7 +80,6 @@ function PersonListView({
 
   return (
     <View style={styles.container}>
-      { searchBar(styles, onSearchIosPersonList, clearFilterPersonList) }
       { errorRefreshing &&
         <Toaster message={toasterOpt} duration={1500} />
       }
@@ -95,6 +94,8 @@ function PersonListView({
         }
       >
         { successFetching &&
+          <View>
+          { searchBar(styles, onSearchIosPersonList, clearFilterPersonList) }
           <List containerStyle={styles.list}>
             {
               list.map((user, i) => (
@@ -147,6 +148,7 @@ function PersonListView({
               </Text>
             }
           </List>
+          </View>
         }
         <Spinner
           visible={fetching}

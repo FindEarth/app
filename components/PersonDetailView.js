@@ -92,7 +92,10 @@ function PersonDetailView({
       <View style={styles.mapContainer}>
         <Text style={styles.titleName}>
           {`${person.name} se perdió el ${format(person.lastSeenAt, 'DD/MM/YYYY, h:mm a')}` +
-          ` en ${person.geo.address}`}
+          ` en ${person.geo.address}. `}
+          {person.description && person.description.clothing && `${person.description.clothing} `}
+          {person.description && person.description.appearance && `${person.description.appearance} `}
+          {person.description && person.description.more && `${person.description.more}`}
         </Text>
         <MapView
           style={styles.map}
@@ -110,13 +113,6 @@ function PersonDetailView({
           />
         </MapView>
       </View>
-      { person.description &&
-        <Text style={styles.titleName}>
-          {person.description.clothing && `${person.description.clothing} `}
-          {person.description.appearance && `${person.description.appearance} `}
-          {person.description.more && `${person.description.more}`}
-        </Text>
-      }
     </ScrollView>
   )
 }
