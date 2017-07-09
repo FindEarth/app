@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-    backgroundColor: Colors.grey3,
+    backgroundColor: Colors.white,
     paddingTop: 15,
   },
   pagination: {
@@ -38,8 +38,9 @@ const styles = StyleSheet.create({
     color: Colors.darkGrey,
     fontSize: 16,
     textAlign: 'center',
-    backgroundColor: Colors.grey3,
+    backgroundColor: Colors.white,
     fontWeight: '500',
+    lineHeight: 23,
   },
   toasterContainer: {
     backgroundColor: Colors.gray,
