@@ -6,4 +6,5 @@
 [![bitHound Dev Dependencies](https://www.bithound.io/github/FindEarth/native-app/badges/devDependencies.svg)](https://www.bithound.io/github/FindEarth/native-app/master/dependencies/npm)
 [![bitHound Code](https://www.bithound.io/github/FindEarth/native-app/badges/code.svg)](https://www.bithound.io/github/FindEarth/native-app)
 
-This is the native-app for the Find Hearth Platform.
+This is the native-app for the Find Hearth Platform.<br>
+To run this app follow this [link](https://expo.io/@keepers/find-earth-app).
