@@ -8,3 +8,7 @@
 
 This is the native-app for the Find Hearth Platform.<br>
 To run this app follow this [link](https://expo.io/@keepers/find-earth-app).
+
+## Download
+- [IOS](https://drive.google.com/open?id=0B-_sbUwC1tPWSFQ5V1lWU3BBUHM)
+- [Android](https://drive.google.com/open?id=0B-_sbUwC1tPWUXQ2UldQcGJrSGc)
