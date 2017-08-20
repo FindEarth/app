@@ -1,0 +1,15 @@
+{
+   "expo": {
+    "name": "Find Earth",
+    "icon": "./assets/icons/app-icon.png",
+    "version": "1.0.0",
+    "slug": "find-earth",
+    "sdkVersion": "15.0.0",
+    "ios": {
+      "bundleIdentifier": "earth.find"
+    },
+    "android": {
+      "package": "earth.find"
+    }
+   }
+ }
